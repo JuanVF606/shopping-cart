@@ -1,0 +1,36 @@
+[
+  {
+    "name": "Sushi Tempura Roll",
+    "price": "45.89",
+    "description": "Delicious",
+    "ratings": 5,
+    "images": [
+      {
+        "public_id": "products/kjfkhka",
+        "url": "https://media-cdn.tripadvisor.com/media/photo-s/0f/17/00/aa/sushi-roll.jpg"
+      }
+    ],
+    "category": "Maki",
+    "seller": "Ebay",
+    "stock": 500,
+    "numOfReviews": 1162,
+    "reviews": []
+  },
+  {
+    "name": "Sushi Mix Roll",
+    "price": "315.00",
+    "description": "Monitor a CAN network, write a CAN program and communicate with industrial, medical, automotive or other CAN based device. Connect CAN FD and CAN networks to a computer via USB with the CAN USB FD adapter.",
+    "ratings": 20,
+    "images": [
+      {
+        "public_id": "products/sadasfgasdg",
+        "url": "https://media-cdn.tripadvisor.com/media/photo-s/0f/17/00/aa/sushi-roll.jpg"
+      }
+    ],
+    "category": "Maki",
+    "seller": "Amazon",
+    "stock": 250,
+    "numOfReviews": 15,
+    "reviews": []
+  }
+]
