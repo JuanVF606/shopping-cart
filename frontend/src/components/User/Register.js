@@ -10,15 +10,13 @@ import { register, clearErrors } from "../../actions/userActions";
 const Register = () => {
   const [user, setUser] = useState({
     name: "",
+    run: "",
+    sex: "",
     email: "",
     password: "",
   });
 
-  const {
-    name,
-    email,
-    password,
-  } = user;
+  const { name, run, sex, email, password } = user;
   const [avatar, setAvatar] = useState("");
   const [avatarPreview, setAvatarPreview] = useState(
     "/images/default_user.jpg"
@@ -48,8 +46,10 @@ const Register = () => {
 
     const formData = new FormData();
     formData.set("name", name);
+    formData.set("run", run);
+    formData.set("sex", sex);
     formData.set("email", email);
-        formData.set("password", password);
+    formData.set("password", password);
     formData.set("avatar", avatar);
     dispatch(register(formData));
   };
@@ -87,7 +87,7 @@ const Register = () => {
             <h1 className="mb-3">Register</h1>
             {/* NAME USER */}
             <div className="form-group">
-              <label htmlFor="email_field">Name</label>
+              <label htmlFor="name_field">Name</label>
               <input
                 type="name"
                 id="name_field"
@@ -97,7 +97,31 @@ const Register = () => {
                 onChange={onChange}
               />
             </div>
-            
+            {/* RUN USER */}
+            <div className="form-group">
+              <label htmlFor="run_field">Run</label>
+              <input
+                type="run"
+                id="run_field"
+                className="form-control"
+                name="run"
+                value={run}
+                onChange={onChange}
+              />
+            </div>
+             {/* RUN USER */}
+             <div className="form-group">
+              <label htmlFor="sex_field">Sex</label>
+              <input
+                type="sex"
+                id="sex_field"
+                className="form-control"
+                placeholder="Masculino/femenino"
+                name="sex"
+                value={sex}
+                onChange={onChange}
+              />
+            </div>
             {/* EMAIL USER*/}
             <div className="form-group">
               <label htmlFor="email_field">Email</label>

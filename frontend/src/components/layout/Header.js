@@ -49,13 +49,13 @@ const Header = () => {
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                <figure className="avatar avatar-nav">
+                {/* <figure className="avatar avatar-nav">
                   <img
                     src={user.avatar && user.avatar.url}
                     alt={user && user.name}
                     className="rounded-circle"
                   />
-                </figure>
+                </figure> */}
                 <span>{user && user.name}</span>
               </Link>
 

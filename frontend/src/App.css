@@ -71,6 +71,10 @@ nav {
   margin-top: 1.8rem;
 }
 
+#number{
+  text-align: justify;
+}
+
 .card {
   height: 100%;
 }

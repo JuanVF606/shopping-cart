@@ -25,9 +25,13 @@ export const login = (email, password) => async (dispatch) => {
         "Content-Type": "application/json",
       },
     };
-    let link = `/api/v1/login`;
-    // Post to database
-    const { data } = await axios.post(link, { email, password }, config);
+
+    const { data } = await axios.post(
+      "/api/v1/login",
+      { email, password },
+      config
+    );
+
     dispatch({
       type: LOGIN_SUCCESS,
       payload: data.user,
@@ -66,23 +70,21 @@ export const register = (userData) => async (dispatch) => {
 // Load User
 export const loadUser = () => async (dispatch) => {
   try {
+    dispatch({ type: LOAD_USER_REQUEST });
 
-      dispatch({ type: LOAD_USER_REQUEST })
+    const { data } = await axios.get("/api/v1/me");
 
-      const { data } = await axios.get('/api/v1/me')
-
-      dispatch({
-          type: LOAD_USER_SUCCESS,
-          payload: data.user
-      })
-
+    dispatch({
+      type: LOAD_USER_SUCCESS,
+      payload: data.user,
+    });
   } catch (error) {
-      dispatch({
-          type: LOAD_USER_FAIL,
-          payload: error.response.data.message
-      })
+    dispatch({
+      type: LOAD_USER_FAIL,
+      payload: error.response.data.message,
+    });
   }
-}
+};
 
 export const logout = () => async (dispatch) => {
   try {
