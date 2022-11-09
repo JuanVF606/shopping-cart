@@ -5,32 +5,32 @@ import { addItemToCart, RemoveItemFromCart } from "../../actions/cartActions";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 const Cart = () => {
-  const dispacth = useDispatch();
+  const dispatch = useDispatch();
   const { cartItems } = useSelector((state) => state.cart);
 
   const removeCartItemHandler = (id) => {
-    dispacth(RemoveItemFromCart(id));
+    dispatch(RemoveItemFromCart(id));
   };
 
   const increaseQty = (id, quantity, stock) => {
     const newQty = quantity + 1;
     if (newQty > stock) return;
 
-    dispacth(addItemToCart(id, newQty));
+    dispatch(addItemToCart(id, newQty));
   };
 
   const decreaseQty = (id, quantity) => {
     const newQty = quantity - 1;
     if (newQty <= 0) return;
 
-    dispacth(addItemToCart(id, newQty));
+    dispatch(addItemToCart(id, newQty));
   };
 
   return (
     <Fragment>
-      <MetaData title={"Tu carrito"} />
+      <MetaData title={"cart"} />
       {cartItems.length === 0 ? (
-        <h2 className="mt-5">Tu carrito esta vacio </h2>
+        <h2 className="mt-5">You cart is empty </h2>
       ) : (
         <Fragment>
           <div className="container container-fluid">
@@ -141,7 +141,7 @@ const Cart = () => {
                     id="checkout_btn"
                     className="btn btn-primary btn-block"
                   >
-                    Pagar
+                    BUY
                   </button>
                 </div>
               </div>
