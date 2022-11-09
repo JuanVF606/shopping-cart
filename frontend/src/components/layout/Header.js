@@ -13,7 +13,7 @@ const Header = () => {
 
   const { user, loading } = useSelector((state) => state.auth);
   const { cartItems } = useSelector((state) => state.cart);
-  // const { cartItems } = useSelector(state => state.cart)
+ 
 
   const logoutHandler = () => {
     dispatch(logout());
