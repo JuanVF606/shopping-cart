@@ -5,16 +5,34 @@ const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 
 const userSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: [true, "Please enter your name and lastname"],
-  },
-  sex: { type: String, require: true },
   run: { type: String, required: true, unique: true },
+  nombre_completo: {
+    type: String,
+    required: [true, "Porfavor ingrese su nombre completo"],
+  },
+  direccion: {
+    type: String,
+    required: [true, "Porfavor ingrese su dirección"],
+  },
+  comuna: { type: String, required: [true, "Por favor ingrese su comuna"] },
+  provincia: {
+    type: String,
+    required: [true, "Por favor ingrese su provincia"],
+  },
+  region: { type: String, required: [true, "Porfavor ingrese su región"] },
+  fecha_nacimiento: {
+    type: String,
+    required: [true, "Ingrese su fecha de nacimiento"],
+  },
+  sexo: { type: String, require: true },
   email: {
     type: String,
     required: [true, "Please enter your email"],
     validate: [validator.isEmail, "Please enter valid email address"],
+  },
+  numero_telefono: {
+    type: String,
+    required:[true]
   },
   password: {
     type: String,

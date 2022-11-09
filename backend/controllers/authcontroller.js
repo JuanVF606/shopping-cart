@@ -14,12 +14,31 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
     crop: "scale",
   });
 
-  const { name, run, email, password } = req.body;
+  const {
+    run,
+    nombre_completo,
+    direccion,
+    comuna,
+    provincia,
+    region,
+    fecha_nacimiento,
+    sexo,
+    email,
+    numero_telefono,
+    password,
+  } = req.body;
 
   const user = await User.create({
-    name,
     run,
+    nombre_completo,
+    direccion,
+    comuna,
+    provincia,
+    region,
+    fecha_nacimiento,
+    sexo,
     email,
+    numero_telefono,
     password,
     avatar: {
       public_id: result.public_id,

@@ -23,8 +23,6 @@ app.use("/api/v1/", products);
 app.use("/api/v1/", auth);
 app.use("/api/v1/", order);
 
-
-
 // Middleware to handle error
 app.use(errorMiddleware);
 
