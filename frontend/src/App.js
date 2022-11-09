@@ -1,15 +1,17 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { loadUser } from "./actions/userActions";
+import Cart from "./components/cart/Cart";
 import Home from "./components/Home";
 import Footer from "./components/layout/Footer";
 import Header from "./components/layout/Header";
 import ProductDetails from "./components/product/ProductDetails";
-import Profile from "./components/User/Profile";
-import Login from "./components/User/Login";
-import Register from "./components/User/Register";
-import { loadUser } from "./actions/userActions";
-import store from "./store";
 import ProtectedRoute from "./components/routes/ProtectedRoute";
+import Login from "./components/User/Login";
+import Profile from "./components/User/Profile";
+import Register from "./components/User/Register";
+import UpdateProfile from "./components/User/UpdateProfile";
+import store from "./store";
 
 const App = () => {
   useEffect(() => {
@@ -24,6 +26,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/cart" element={<Cart />} />
             <Route path="/login" element={<Login />} />
             <Route path="/search/:keyword" element={<Home />} />
             <Route path="/product/:id" element={<ProductDetails />} />
@@ -32,6 +35,14 @@ const App = () => {
               element={
                 <ProtectedRoute>
                   <Profile />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/me/update"
+              element={
+                <ProtectedRoute>
+                  <UpdateProfile />
                 </ProtectedRoute>
               }
             />

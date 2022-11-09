@@ -1,26 +1,32 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
+import Search from "./Search";
 import { useDispatch, useSelector } from "react-redux";
 import { useAlert } from "react-alert";
 import { logout } from "../../actions/userActions";
+
 import "../../App.css";
-import Search from "./Search";
+
 const Header = () => {
   const alert = useAlert();
   const dispatch = useDispatch();
+
   const { user, loading } = useSelector((state) => state.auth);
-  
+  const { cartItems } = useSelector((state) => state.cart);
+  // const { cartItems } = useSelector(state => state.cart)
+
   const logoutHandler = () => {
     dispatch(logout());
-    alert.success("Logged out successfully");
+    alert.success("Logged out successfully.");
   };
+
   return (
     <Fragment>
       <nav className="navbar row">
         <div className="col-12 col-md-3">
           <div className="navbar-brand">
             <Link to="/">
-              <img src="/images/Logo.png" alt="" />
+              <img alt={"Ecommerce."} src="/images/Logo.png" />
             </Link>
           </div>
         </div>
@@ -29,58 +35,58 @@ const Header = () => {
           <Search />
         </div>
 
-        <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">
+        <div className="col-12 col-md-3 mt-4 mt-md-0 text-center rounded-circle">
           <Link to="/cart" style={{ textDecoration: "none" }}>
-            <span id="cart" className="ml-3">
+            <span id="cart" className="ml-3 rounded-circle">
               Cart
             </span>
             <span className="ml-1" id="cart_count">
-              2
+              {cartItems.length}
             </span>
           </Link>
+
           {user ? (
             <div className="ml-4 dropdown d-inline">
               <Link
-                to="/"
+                to="#!"
                 className="btn dropdown-toggle text-white mr-4"
                 type="button"
                 id="dropDownMenuButton"
                 data-toggle="dropdown"
                 aria-haspopup="true"
-                aria-expanded="false"
+                area-expanded="false"
               >
-                {/* <figure className="avatar avatar-nav">
+                <figure className="avatar avatar-nav ">
                   <img
                     src={user.avatar && user.avatar.url}
-                    alt={user && user.name}
+                    alt={user.name}
                     className="rounded-circle"
                   />
-                </figure> */}
-                <span>{user && user.name}</span>
+                </figure>
+                <span>{user && user.nombre_completo}</span>
               </Link>
 
               <div
                 className="dropdown-menu"
                 aria-labelledby="dropDownMenuButton"
               >
-                {user && user.role !== "admin" ? (
-                  <Link className="dropdown-item" to="/orders/me">
-                    Orders
-                  </Link>
-                ) : (
+                {user && user.role === "admin" && (
                   <Link className="dropdown-item" to="/dashboard">
                     Dashboard
                   </Link>
                 )}
+                <Link className="dropdown-item" to="/orders/me">
+                  Pedidos
+                </Link>
                 <Link className="dropdown-item" to="/me">
-                  Profile
+                  Mi Perfil
                 </Link>
                 <Link
                   className="dropdown-item text-danger"
                   to="/"
                   onClick={logoutHandler}
                 >
-                  Log out
+                  Logout
                 </Link>
               </div>
             </div>
@@ -96,4 +102,5 @@ const Header = () => {
     </Fragment>
   );
 };
+
 export default Header;

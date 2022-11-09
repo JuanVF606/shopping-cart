@@ -9,14 +9,32 @@ import { register, clearErrors } from "../../actions/userActions";
 
 const Register = () => {
   const [user, setUser] = useState({
-    name: "",
     run: "",
-    sex: "",
+    nombre_completo: "",
+    direccion: "",
+    comuna: "",
+    provincia: "",
+    region: "",
+    fecha_nacimiento: "",
+    sexo: "",
     email: "",
+    numero_telefono: "",
     password: "",
   });
 
-  const { name, run, sex, email, password } = user;
+  const {
+    run,
+    nombre_completo,
+    direccion,
+    comuna,
+    provincia,
+    region,
+    fecha_nacimiento,
+    sexo,
+    email,
+    numero_telefono,
+    password,
+  } = user;
   const [avatar, setAvatar] = useState("");
   const [avatarPreview, setAvatarPreview] = useState(
     "/images/default_user.jpg"
@@ -45,10 +63,16 @@ const Register = () => {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.set("name", name);
     formData.set("run", run);
-    formData.set("sex", sex);
+    formData.set("nombre_completo", nombre_completo);
+    formData.set("direccion", direccion);
+    formData.set("comuna", comuna);
+    formData.set("provincia", provincia);
+    formData.set("region", region);
+    formData.set("fecha_nacimiento", fecha_nacimiento);
+    formData.set("sexo", sexo);
     formData.set("email", email);
+    formData.set("numero_telefono", numero_telefono);
     formData.set("password", password);
     formData.set("avatar", avatar);
     dispatch(register(formData));
@@ -85,44 +109,106 @@ const Register = () => {
           >
             {/* TITLE FORM */}
             <h1 className="mb-3">Register</h1>
-            {/* NAME USER */}
-            <div className="form-group">
-              <label htmlFor="name_field">Name</label>
-              <input
-                type="name"
-                id="name_field"
-                className="form-control"
-                name="name"
-                value={name}
-                onChange={onChange}
-              />
-            </div>
             {/* RUN USER */}
             <div className="form-group">
-              <label htmlFor="run_field">Run</label>
+              <label htmlFor="run_field">Rut</label>
               <input
                 type="run"
-                id="run_field"
+                id="name_field"
                 className="form-control"
                 name="run"
                 value={run}
                 onChange={onChange}
               />
             </div>
-             {/* RUN USER */}
-             <div className="form-group">
-              <label htmlFor="sex_field">Sex</label>
+            {/* NAME USER */}
+            <div className="form-group">
+              <label htmlFor="nombre_completo_field">Nombre completo</label>
               <input
-                type="sex"
-                id="sex_field"
+                type="nombre_completo"
+                id="nombre_completo_field"
                 className="form-control"
-                placeholder="Masculino/femenino"
-                name="sex"
-                value={sex}
+                name="nombre_completo"
+                value={nombre_completo}
+                onChange={onChange}
+              />
+            </div>
+            {/* Direccion USER */}
+            <div className="form-group">
+              <label htmlFor="direccion_field">Direccion</label>
+              <input
+                type="direccion"
+                id="direccion_field"
+                className="form-control"
+                name="direccion"
+                value={direccion}
+                onChange={onChange}
+              />
+            </div>
+            {/* Comuna USER */}
+            <div className="form-group">
+              <label htmlFor="comuna_field">Comuna</label>
+              <input
+                type="comuna"
+                id="comuna_field"
+                className="form-control"
+                name="comuna"
+                value={comuna}
+                onChange={onChange}
+              />
+            </div>
+            {/* Provincia  User*/}
+            <div className="form-group">
+              <label htmlFor="provincia_field">Provincia</label>
+              <input
+                type="provincia"
+                id="provincia_field"
+                className="form-control"
+                name="provincia"
+                value={provincia}
+                onChange={onChange}
+              />
+            </div>
+            {/* Region USER */}
+            <div className="form-group">
+              <label htmlFor="region_field">region</label>
+              <input
+                type="region"
+                id="region_field"
+                className="form-control"
+                name="region"
+                value={region}
+                onChange={onChange}
+              />
+            </div>
+            {/* Fecha Nacimiento USER */}
+            <div className="form-group">
+              <label htmlFor="fecha_nacimiento_field">
+                Fecha De Nacimiento
+              </label>
+              <input
+                type="fecha_nacimiento"
+                id="fecha_nacimiento_field"
+                className="form-control"
+                name="fecha_nacimiento"
+                value={fecha_nacimiento}
+                onChange={onChange}
+              />
+            </div>
+            {/* SEXO USER */}
+            <div className="form-group">
+              <label htmlFor="sexo_field">sexo</label>
+              <input
+                type="sexo"
+                id="sexo_field"
+                className="form-control"
+                name="sexo"
+                value={sexo}
                 onChange={onChange}
               />
             </div>
             {/* EMAIL USER*/}
+
             <div className="form-group">
               <label htmlFor="email_field">Email</label>
               <input
@@ -131,6 +217,18 @@ const Register = () => {
                 className="form-control"
                 name="email"
                 value={email}
+                onChange={onChange}
+              />
+            </div>
+            {/* NUMERO TELEFONO */}
+            <div className="form-group">
+              <label htmlFor="numero_telefono_field">Numero De Telefono</label>
+              <input
+                type="numero_telefono"
+                id="numero_telefono_field"
+                className="form-control"
+                name="numero_telefono"
+                value={numero_telefono}
                 onChange={onChange}
               />
             </div>
@@ -151,7 +249,7 @@ const Register = () => {
               <label htmlFor="avatar_upload">Avatar</label>
               <div className="d-flex align-items-center">
                 <div>
-                  <figure className="avatar mr-3 item-rtl">
+                  <figure className="avatar mr-1 item-rtl">
                     <img
                       src={avatarPreview}
                       className="rounded-circle"
@@ -169,7 +267,7 @@ const Register = () => {
                     onChange={onChange}
                   />
                   <label className="custom-file-label" htmlFor="customFile">
-                    Choose Avatar
+                    Añade Una Foto
                   </label>
                 </div>
               </div>
@@ -181,7 +279,7 @@ const Register = () => {
               className="btn btn-block py-3"
               disabled={loading ? true : false}
             >
-              REGISTER
+              CREAR CUENTA
             </button>
           </form>
           {/* END FORM */}
