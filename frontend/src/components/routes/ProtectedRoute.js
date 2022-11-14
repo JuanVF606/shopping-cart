@@ -1,5 +1,3 @@
-// import React, { Fragment } from 'react'
-// import { Routes, Route, Navigate  } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { loadUser } from "../../actions/userActions";
@@ -23,28 +21,6 @@ const ProtectedRoute = ({ children, isAdmin }) => {
   } else {
     return <Navigate to={"/login"} />;
   }
-  // return (
-  //     <Fragment>
-  //         {loading === false && (
-  //            <Routes>
-  //                 <Route
-  //                 {...rest}
-  //                 render={props => {
-  //                     if (isAuthenticated === false) {
-  //                         return <Navigate  to='/login' />
-  //                     }
-
-  //                     if (isAdmin === true && user.role !== 'admin') {
-  //                         return <Navigate  to="/" />
-  //                     }
-
-  //                     return <Component {...props} />
-  //                 }}
-  //             />
-  //            </Routes>
-  //         )}
-  //     </Fragment>
-  // )
 };
 
 export default ProtectedRoute;

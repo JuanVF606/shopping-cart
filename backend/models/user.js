@@ -32,7 +32,7 @@ const userSchema = new mongoose.Schema({
   },
   numero_telefono: {
     type: String,
-    required:[true]
+    required: [true],
   },
   password: {
     type: String,
@@ -44,10 +44,10 @@ const userSchema = new mongoose.Schema({
     public_id: {
       type: String,
       required: true,
-      url: {
-        type: String,
-        required: [true, "Please add image for you profile"],
-      },
+    },
+    url: {
+      type: String,
+      required: [true, "Please add image for you profile"],
     },
   },
   createAt: {

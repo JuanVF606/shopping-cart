@@ -70,24 +70,27 @@ export const register = (userData) => async (dispatch) => {
     });
   }
 };
-// Load User
+// loaduser
 export const loadUser = () => async (dispatch) => {
   try {
-    dispatch({ type: LOAD_USER_REQUEST });
 
-    const { data } = await axios.get("/api/v1/me");
+      dispatch({ type: LOAD_USER_REQUEST })
 
-    dispatch({
-      type: LOAD_USER_SUCCESS,
-      payload: data.user,
-    });
+      const { data } = await axios.get('/api/v1/me')
+
+      dispatch({
+          type: LOAD_USER_SUCCESS,
+          payload: data.user
+      })
+
   } catch (error) {
-    dispatch({
-      type: LOAD_USER_FAIL,
-      payload: error.response.data.message,
-    });
+      dispatch({
+          type: LOAD_USER_FAIL,
+          payload: error.response.data.message
+      })
   }
-};
+}
+
 
 export const logout = () => async (dispatch) => {
   try {

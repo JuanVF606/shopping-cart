@@ -36,10 +36,12 @@ const Profile = () => {
               <div className="col-12 col-md-5 border">
                 
                 <h4>Nombre Completo</h4>   
-                <p>{user.nombre_completo}</p>         
+                <p>{user.nombre_completo}</p>
+                <h4>Sexo</h4>
+                <p>{user.sexo}</p>         
                 <h4>Rut</h4>
                 <p>{user.run}</p>
-                <h4>Fecha Nacimiento</h4>
+                <h4>Fecha De Nacimiento</h4>
                 <p>{user.fecha_nacimiento}</p>
 
                 <h4>Numero de Telefono</h4>

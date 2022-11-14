@@ -1,43 +1,54 @@
 import React, { Fragment, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+
+import Loader from "../layout/Loader";
+import MetaData from "../layout/MetaData";
+import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
-import MetaData from "../layout/MetaData";
-import Loader from "../layout/Loader";
-import { Link } from "react-router-dom";
 import { login, clearErrors } from "../../actions/userActions";
-import { useNavigate, useLocation } from "react-router-dom";
 
 const Login = () => {
   let navigate = useNavigate();
   let location = useLocation();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const alert = useAlert();
+  const dispatch = useDispatch();
+
   const { isAuthenticated, error, loading } = useSelector(
     (state) => state.auth
   );
+
   const redirect = location.search ? `/${location.search.split("=")[1]}` : "/";
-  const alert = useAlert;
-  const dispatch = useDispatch();
+
   useEffect(() => {
     if (isAuthenticated) {
       navigate(`${redirect}`);
     }
+
     if (error) {
       alert.error(error);
       dispatch(clearErrors());
     }
-  }, [dispatch, alert, isAuthenticated, error, navigate, redirect]);
+  }, [dispatch, alert, isAuthenticated, error, navigate]);
+
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(login(email, password));
   };
+
   return (
     <Fragment>
       {loading ? (
         <Loader />
       ) : (
         <Fragment>
-          <MetaData title={"login"} />
+          <MetaData title={"Login"} />
+
           <div className="row wrapper">
             <div className="col-10 col-lg-5">
               <form className="shadow-lg" onSubmit={submitHandler}>
@@ -80,6 +91,7 @@ const Login = () => {
                   New User?
                 </Link>
               </form>
+              
             </div>
           </div>
         </Fragment>

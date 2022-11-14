@@ -12,7 +12,9 @@ import {
   UPDATE_PROFILE_FAIL,
   UPDATE_PROFILE_REQUEST,
   UPDATE_PROFILE_RESET,
-  UPDATE_PROFILE_SUCCESS
+  UPDATE_PROFILE_SUCCESS,
+  LOGOUT_FAIL,
+  LOGOUT_SUCCESS
 } from "../constants/userConstants";
 
 export const authReducer = (state = { user: {} }, action) => {
@@ -33,12 +35,22 @@ export const authReducer = (state = { user: {} }, action) => {
         isAuthenticated: true,
         user: action.payload,
       };
-
+    case LOGOUT_SUCCESS:
+      return {
+        loading: false,
+        isAuthenticated: false,
+        user: null,
+      };
     case LOAD_USER_FAIL:
       return {
         loading: false,
         isAuthenticated: false,
         user: null,
+        error: action.payload,
+      };
+    case LOGOUT_FAIL:
+      return {
+        ...state,
         error: action.payload,
       };
 
@@ -56,8 +68,9 @@ export const authReducer = (state = { user: {} }, action) => {
         ...state,
         error: null,
       };
+
     default:
-      return false;
+      return state;
   }
 };
 

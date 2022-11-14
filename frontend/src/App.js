@@ -1,17 +1,31 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { loadUser } from "./actions/userActions";
-import Cart from "./components/cart/Cart";
+
+// Pages visual Imports
+import Header from "./components/layout/Header";
 import Home from "./components/Home";
 import Footer from "./components/layout/Footer";
-import Header from "./components/layout/Header";
-import ProductDetails from "./components/product/ProductDetails";
-import ProtectedRoute from "./components/routes/ProtectedRoute";
+
+// Cart imports
+import Cart from "./components/cart/Cart";
+
+// Orders imports
+
+// Auth or User Imports
+import { loadUser } from "./actions/userActions";
 import Login from "./components/User/Login";
 import Profile from "./components/User/Profile";
 import Register from "./components/User/Register";
 import UpdateProfile from "./components/User/UpdateProfile";
+
+// Admin Imports
+
+import ProtectedRoute from "./components/routes/ProtectedRoute";
+import Dashboard from "./components/admin/Dashboard";
+
+// Products Import
 import store from "./store";
+import ProductDetails from "./components/product/ProductDetails";
 
 const App = () => {
   useEffect(() => {
@@ -24,28 +38,47 @@ const App = () => {
         <Header />
         <div className="container container-fluid">
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/login" element={<Login />} />
+            {/* Init Routes */}
+            <Route path="/" element={<Home />} exact />
             <Route path="/search/:keyword" element={<Home />} />
-            <Route path="/product/:id" element={<ProductDetails />} />
+            <Route path="/product/:id" element={<ProductDetails />} exact />
+            {/* Cart Routes */}
+            <Route path="/cart" element={<Cart />} exact />
+            {/* Forms */}
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            {/* Profile Routes */}
             <Route
               path="/me"
               element={
                 <ProtectedRoute>
-                  <Profile />
+                  {" "}
+                  <Profile />{" "}
                 </ProtectedRoute>
               }
+              exact
             />
             <Route
               path="/me/update"
               element={
                 <ProtectedRoute>
-                  <UpdateProfile />
+                  {" "}
+                  <UpdateProfile />{" "}
                 </ProtectedRoute>
               }
+              exact
             />
+            {/* Admin Routes */}
+            <Route
+              path="/dashboard"
+              isAdmin={true}
+              element={
+                <ProtectedRoute>
+                  {" "}
+                  <Dashboard />{" "}
+                </ProtectedRoute>
+              }
+            />{" "}
           </Routes>
         </div>
         <Footer />
