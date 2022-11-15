@@ -1,44 +1,84 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { Link } from "react-router-dom";
 
 const SideBar = () => {
   return (
+    <div className="row">
     <div className="sidebar-wrapper">
-    <nav id="sidebar">
+      <nav id="sidebar">
         <ul className="list-unstyled components">
-        <li>
-            <Link to="/dashboard"><i className="fas fa-tachometer-alt" ></i> Dashboard</Link>
-        </li>
+          <li>
+            <Link to="/dashboard">
+              <i className="fa fa-tachometer"></i> Dashboard
+            </Link>
+          </li>
 
-        <li>
-            <Link to="#productSubmenu" data-toggle="collapse" aria-expanded="false" className="dropdown-toggle"><i
-                className="fab fa-product-hunt"></i> Products</Link>
+          <li>
+            <a
+              href="#productSubmenu"
+              data-toggle="collapse"
+              aria-expanded="false"
+              className="dropdown-toggle"
+            >
+              <i className="fa fa-product-hunt"></i> Products
+            </a>
             <ul className="collapse list-unstyled" id="productSubmenu">
-                <li>
-                <Link to="/admin/products"><i className="fa fa-clipboard-list"></i> All</Link>
-                </li>
+              <li>
+                <Link to="/admin/products">
+                  <i className="fa fa-clipboard"></i> All
+                </Link>
+              </li>
 
-                <li>
-                <Link to="/admin/product"><i className="fa fa-plus"></i> Create</Link>
-                </li>
+              <li>
+                <Link to="/admin/product">
+                  <i className="fa fa-plus"></i> Create
+                </Link>
+              </li>
             </ul>
-        </li>
+          </li>
 
-        <li>
-            <Link to="/admin/orders"><i className="fa fa-shopping-basket"></i> Orders</Link>
-        </li>
+          <li>
+            <Link to="/admin/orders">
+              <i className="fa fa-shopping-basket"></i> Orders
+            </Link>
+          </li>
 
-        <li>
-            <Link to="/admin/users"><i className="fa fa-users"></i> Users</Link>
-        </li>
-        <li>
-            <Link to="/admin/reviews"><i className="fa fa-users"></i> Reviews</Link>
-        </li>
+          <li>
+            <a
+              href="#Usersubmenu"
+              data-toggle="collapse"
+              aria-expanded="false"
+              className="dropdown-toggle"
+            >
+              <i className="fa fa-user"></i> User
+            </a>
+            <ul className="collapse list-unstyled" id="Usersubmenu">
+                           <li>
+                <Link to="/admin/register">
+                  <i className="fa fa-plus"></i> Create
+                </Link>
+              </li>
+            </ul>
+          </li>
 
-    </ul>
-    </nav>
-</div>
-  )
-}
 
-export default SideBar
+          {/* <li>
+            
+            <Link to="/admin/users">
+              <i className="fa fa-users"></i> Users
+            </Link>
+          </li> */}
+
+          <li>
+            <Link to="/admin/reviews">
+              <i className="fa fa-star"></i> Reviews
+            </Link>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    </div>
+  );
+};
+
+export default SideBar;

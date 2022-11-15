@@ -212,8 +212,9 @@ exports.ForgotRun = catchAsyncErrors(async (req, res, next) => {
 // Update user profile   =>   /api/v1/me/update
 exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
   const newUserData = {
-    name: req.body.name,
+    nombre_completo: req.body.nombre_completo,
     email: req.body.email,
+    direccion: req.body.direccion
   };
 
   // Update avatar
@@ -290,7 +291,7 @@ exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
 // Update user profile   =>   /api/v1/admin/user/:id
 exports.updateUser = catchAsyncErrors(async (req, res, next) => {
   const newUserData = {
-    name: req.body.name,
+    name: req.body.nombre_completo,
     email: req.body.email,
     role: req.body.role,
   };
@@ -326,3 +327,44 @@ exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
     success: true,
   });
 });
+
+exports.registerAdminUser = catchAsyncErrors(async (req, res, next) => {
+  const result = await cloudinary.v2.uploader.upload(req.body.avatar, {
+    folder: "avatars",
+    width: 150,
+    crop: "scale",
+  });
+
+  const {
+    run,
+    nombre_completo,
+    direccion,
+    comuna,
+    provincia,
+    region,
+    fecha_nacimiento,
+    sexo,
+    email,
+    numero_telefono,
+    password,
+  } = req.body;
+
+  const user = await User.create({
+    run,
+    nombre_completo,
+    direccion,
+    comuna,
+    provincia,
+    region,
+    fecha_nacimiento,
+    sexo,
+    email,
+    numero_telefono,
+    password,
+    avatar: {
+      public_id: result.public_id,
+      url: result.secure_url,
+    },
+  });
+
+ });

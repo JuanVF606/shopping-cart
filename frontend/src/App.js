@@ -27,6 +27,7 @@ import Dashboard from "./components/admin/Dashboard";
 import store from "./store";
 import ProductDetails from "./components/product/ProductDetails";
 
+
 const App = () => {
   useEffect(() => {
     store.dispatch(loadUser());
@@ -53,7 +54,7 @@ const App = () => {
               element={
                 <ProtectedRoute>
                   {" "}
-                  <Profile />{" "}
+                  <Profile />
                 </ProtectedRoute>
               }
               exact
@@ -79,6 +80,7 @@ const App = () => {
                 </ProtectedRoute>
               }
             />{" "}
+           
           </Routes>
         </div>
         <Footer />

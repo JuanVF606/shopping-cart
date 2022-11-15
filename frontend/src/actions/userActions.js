@@ -73,24 +73,21 @@ export const register = (userData) => async (dispatch) => {
 // loaduser
 export const loadUser = () => async (dispatch) => {
   try {
+    dispatch({ type: LOAD_USER_REQUEST });
 
-      dispatch({ type: LOAD_USER_REQUEST })
+    const { data } = await axios.get("/api/v1/me");
 
-      const { data } = await axios.get('/api/v1/me')
-
-      dispatch({
-          type: LOAD_USER_SUCCESS,
-          payload: data.user
-      })
-
+    dispatch({
+      type: LOAD_USER_SUCCESS,
+      payload: data.user,
+    });
   } catch (error) {
-      dispatch({
-          type: LOAD_USER_FAIL,
-          payload: error.response.data.message
-      })
+    dispatch({
+      type: LOAD_USER_FAIL,
+      payload: error.response.data.message,
+    });
   }
-}
-
+};
 
 export const logout = () => async (dispatch) => {
   try {
@@ -136,5 +133,31 @@ export const updateProfile = (userData) => async (dispatch) => {
       type: UPDATE_PROFILE_FAIL,
       payload: error.response.data.message,
     });
+  }
+};
+
+export const registerUser = (isAuthenticated, userData) => async (dispatch) => {
+  if (isAuthenticated === true) {
+    try {
+      dispatch({ type: REGISTER_USER_REQUEST });
+
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
+      let link = `/api/v1/admin/register`;
+      // Post to database
+      const { data } = await axios.post(link, userData, config);
+      dispatch({
+        type: REGISTER_USER_SUCCESS,
+        payload: data.user,
+      });
+    } catch (error) {
+      dispatch({
+        type: REGISTER_USER_FAIL,
+        payload: error.response.data.message,
+      });
+    }
   }
 };

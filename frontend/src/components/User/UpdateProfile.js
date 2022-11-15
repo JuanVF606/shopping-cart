@@ -13,11 +13,12 @@ import { UPDATE_PROFILE_RESET } from "../../constants/userConstants";
 import { useNavigate } from "react-router-dom";
 
 const UpdateProfile = () => {
-  const [name, setName] = useState("");
+  const [nombre_completo, setNombre_completo] = useState("");
   const [email, setEmail] = useState("");
   const [avatar, setAvatar] = useState("");
+  const [direccion, setDireccion] = useState("");
   const [avatarPreview, setAvatarPreview] = useState(
-    "/images/default_avatar.jpg"
+    "/images/defaul_user.jpg"
   );
 
   const alert = useAlert();
@@ -29,9 +30,10 @@ const UpdateProfile = () => {
 
   useEffect(() => {
     if (user) {
-      setName(user.name);
+      setNombre_completo(user.nombre_completo);
       setEmail(user.email);
       setAvatarPreview(user.avatar.url);
+      setDireccion(user.direccion);
     }
 
     if (error) {
@@ -43,20 +45,21 @@ const UpdateProfile = () => {
       alert.success("User updated successfully");
       dispatch(loadUser());
 
-      navigate("/my_profile");
+      navigate("/me");
 
       dispatch({
         type: UPDATE_PROFILE_RESET,
       });
     }
-  }, [dispatch, alert, error, navigate, isUpdated]);
+  }, [user,dispatch, alert, error, navigate, isUpdated]);
 
   const submitHandler = (e) => {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.set("name", name);
+    formData.set("nombre_completo", nombre_completo);
     formData.set("email", email);
+    formData.set("direccion", direccion);
     formData.set("avatar", avatar);
 
     dispatch(updateProfile(formData));
@@ -76,7 +79,7 @@ const UpdateProfile = () => {
   };
   return (
     <Fragment>
-      <MetaData title={"Update Profile"} />
+      <MetaData title={"Actualiza tu Perfil"} />
 
       <div className="row wrapper">
         <div className="col-10 col-lg-5">
@@ -85,19 +88,32 @@ const UpdateProfile = () => {
             onSubmit={submitHandler}
             encType="multipart/form-data"
           >
-            <h1 className="mt-2 mb-5">Update Profile</h1>
+            <h1 className="mt-2 mb-5">Actualizar Perfil</h1>
 
             <div className="form-group">
-              <label htmlFor="email_field">Name</label>
+              <label htmlFor="nombre_completo_field">Nombre Completo</label>
               <input
-                type="name"
-                id="name_field"
+                type="nombre_completo"
+                id="nombre_completo_field"
                 className="form-control"
-                name="name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                name="nombre_completo"
+                value={nombre_completo}
+                onChange={(e) => setNombre_completo(e.target.value)}
               />
             </div>
+
+            <div className="form-group">
+              <label htmlFor="direccion_field">Direccion</label>
+              <input
+                type="direccion"
+                id="direccion_field"
+                className="form-control"
+                name="direccion"
+                value={direccion}
+                onChange={(e) => setDireccion(e.target.value)}
+              />
+            </div>
+
 
             <div className="form-group">
               <label htmlFor="email_field">Email</label>

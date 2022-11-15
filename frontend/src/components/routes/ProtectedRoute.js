@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 import { loadUser } from "../../actions/userActions";
 import { useEffect } from "react";
 
-const ProtectedRoute = ({ children, isAdmin }) => {
+export const ProtectedRoute = ({ children, isAdmin }) => {
   const { isAuthenticated, loading, user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
@@ -24,3 +24,6 @@ const ProtectedRoute = ({ children, isAdmin }) => {
 };
 
 export default ProtectedRoute;
+
+
+

@@ -14,12 +14,11 @@ const {
   getUserDetails,
   updateUser,
   deleteUser,
-  ForgotRun
+  ForgotRun,
+  registerAdminUser,
 } = require("../controllers/authcontroller");
 
 const { isAuthenticatedUser, authorizeRoles } = require("..//middlewares/auth");
-
-
 
 // Basic functions
 router.route("/register").post(registerUser);
@@ -36,8 +35,7 @@ router.route("/me").get(isAuthenticatedUser, getUserProfile);
 router.route("/me/update").put(isAuthenticatedUser, updateProfile);
 
 // Stupids but logics forgets
-router.route("/forgot/run").post(ForgotRun)
-
+router.route("/forgot/run").post(ForgotRun);
 
 // Admins
 router
@@ -48,5 +46,7 @@ router
   .get(isAuthenticatedUser, authorizeRoles("admin"), getUserDetails)
   .put(isAuthenticatedUser, authorizeRoles("admin"), updateUser)
   .delete(isAuthenticatedUser, authorizeRoles("admin"), deleteUser);
+
+router.route("/admin/register").post(isAuthenticatedUser, registerAdminUser);
 
 module.exports = router;
