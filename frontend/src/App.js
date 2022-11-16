@@ -37,6 +37,11 @@ import ProductDetails from "./components/product/ProductDetails";
 import Shipping from "./components/cart/Shipping";
 import ConfirmOrder from "./components/cart/ConfirmOrder";
 
+
+
+//Payment
+import Payment from "./components/cart/Payment";
+
 const App = () => {
   useEffect(() => {
     store.dispatch(loadUser());
@@ -57,6 +62,8 @@ const App = () => {
             <Route path="/cart" element={<Cart />} exact />
             <Route path="/shipping" element={<ProtectedRoute> < Shipping /> </ProtectedRoute>} />
             <Route path="/order/confirm" element={<ProtectedRoute> < ConfirmOrder /> </ProtectedRoute>} />
+            <Route path="/payment" element={<ProtectedRoute> < Payment /> </ProtectedRoute>} />
+            
             {/* Forms Routes */}
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />

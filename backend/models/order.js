@@ -2,23 +2,23 @@ const mongoose = require("mongoose");
 
 const orderSchema = mongoose.Schema({
   shippingInfo: {
-    address: {
+    direccion: {
       type: String,
       required: true
     },
-    city: {
+    comuna: {
       type: String,
       required: true
     },
-    phoneNo: {
+    numero_telefono: {
       type: String,
       required: true
     },
-    postalCode: {
+    provincia: {
       type: String,
       required: true
     },
-    country: {
+    region: {
       type: String,
       required: true
     }
