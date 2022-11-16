@@ -16,7 +16,8 @@ import Footer from "./components/layout/Footer";
 import Cart from "./components/cart/Cart";
 
 // Orders imports
-
+import ListOrders from "./components/order/ListOrder";
+import OrderDetails from "./components/order/OrderDetails";
 // Auth or User Imports
 import {
   loadUser
@@ -41,6 +42,7 @@ import ConfirmOrder from "./components/cart/ConfirmOrder";
 
 //Payment
 import Payment from "./components/cart/Payment";
+import OrderSuccess from "./components/cart/OrderSuccess";
 
 const App = () => {
   useEffect(() => {
@@ -63,6 +65,7 @@ const App = () => {
             <Route path="/shipping" element={<ProtectedRoute> < Shipping /> </ProtectedRoute>} />
             <Route path="/order/confirm" element={<ProtectedRoute> < ConfirmOrder /> </ProtectedRoute>} />
             <Route path="/payment" element={<ProtectedRoute> < Payment /> </ProtectedRoute>} />
+            <Route path="/success" element={<ProtectedRoute> < OrderSuccess /> </ProtectedRoute>} />
             
             {/* Forms Routes */}
             <Route path="/register" element={<Register />} />
@@ -70,6 +73,8 @@ const App = () => {
             {/* Profile Routes */}
             <Route path="/me" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
             <Route path="/me/update" element={<ProtectedRoute><UpdateProfile /></ProtectedRoute>} exact />
+            <Route path="/orders/me" element={<ProtectedRoute> <ListOrders /> </ProtectedRoute>} exact/>
+            <Route path="/order/:id" element={<ProtectedRoute> <OrderDetails /> </ProtectedRoute>}/>    
             {/* Admin Routes */}
             <Route path="/dashboard" isAdmin={true} element={<ProtectedRoute> <Dashboard /></ProtectedRoute>} />
           </Routes>
