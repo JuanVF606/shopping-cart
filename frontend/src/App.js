@@ -74,7 +74,7 @@ const App = () => {
             <Route path="/me" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
             <Route path="/me/update" element={<ProtectedRoute><UpdateProfile /></ProtectedRoute>} exact />
             <Route path="/orders/me" element={<ProtectedRoute> <ListOrders /> </ProtectedRoute>} exact/>
-            <Route path="/order/:id" element={<ProtectedRoute> <OrderDetails /> </ProtectedRoute>}/>    
+            <Route path="/order/:id" element={<ProtectedRoute> <OrderDetails /> </ProtectedRoute>} exact/>    
             {/* Admin Routes */}
             <Route path="/dashboard" isAdmin={true} element={<ProtectedRoute> <Dashboard /></ProtectedRoute>} />
           </Routes>
