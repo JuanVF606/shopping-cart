@@ -34,6 +34,8 @@ import Dashboard from "./components/admin/Dashboard";
 // Products Import
 import store from "./store";
 import ProductDetails from "./components/product/ProductDetails";
+import Shipping from "./components/cart/Shipping";
+import ConfirmOrder from "./components/cart/ConfirmOrder";
 
 const App = () => {
   useEffect(() => {
@@ -47,40 +49,22 @@ const App = () => {
         <div className="container container-fluid">
           <Routes>
 
-            {/* Init Routes */} <Route path="/" element={<Home />} exact />
+            {/* Init Routes */}
+            <Route path="/" element={<Home />} exact />
             <Route path="/search/:keyword" element={<Home />} />
             <Route path="/product/:id" element={<ProductDetails />} exact />
-            {/* Cart Routes */} <Route path="/cart" element={<Cart />} exact />
-            {/* Forms */} <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} /> {/* Profile Routes */}
-            <Route
-              path="/me"
-              element={
-                <ProtectedRoute>
-                  <Profile />
-                </ProtectedRoute>
-              }
-              exact
-            />
-            <Route
-              path="/me/update"
-              element={
-                <ProtectedRoute>
-                  <UpdateProfile />
-                </ProtectedRoute>
-              }
-              exact
-            />
+            {/* Cart Routes */}
+            <Route path="/cart" element={<Cart />} exact />
+            <Route path="/shipping" element={<ProtectedRoute> < Shipping /> </ProtectedRoute>} />
+            <Route path="/order/confirm" element={<ProtectedRoute> < ConfirmOrder /> </ProtectedRoute>} />
+            {/* Forms Routes */}
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            {/* Profile Routes */}
+            <Route path="/me" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+            <Route path="/me/update" element={<ProtectedRoute><UpdateProfile /></ProtectedRoute>} exact />
             {/* Admin Routes */}
-            <Route
-              path="/dashboard"
-              isAdmin={true}
-              element={
-                <ProtectedRoute>
-                  <Dashboard />
-                </ProtectedRoute>
-              }
-            />
+            <Route path="/dashboard" isAdmin={true} element={<ProtectedRoute> <Dashboard /></ProtectedRoute>} />
           </Routes>
         </div>
         <Footer />
