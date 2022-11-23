@@ -36,20 +36,14 @@ import {
 
 export const productsReducer = (state = { products: [] }, action) => {
   switch (action.type) {
-    //first all products dispatch then loading true
-    //then set he products into empty array of products
+    
     case ALL_PRODUCTS_REQUEST: //step-2
     case ADMIN_PRODUCTS_REQUEST:
       return {
         loading: true,
         products: [],
       };
-    // if products get all products from backend.
-    // its get success and loading will be false.
-    // and will pass products in action and set products state into products
-    //this is pull the data of product from productAction
-    //this pull the data of product count from productAction
-    //and save this into this state state after loading false ALL_PRODUCTS_SUCCESS
+    
     case ALL_PRODUCTS_SUCCESS:
       return {
         loading: false,

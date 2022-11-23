@@ -5,7 +5,7 @@ import MetaData from '../layout/MetaData'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { createOrder, clearErrors } from '../../actions/orderActions'
-
+import{clearCart} from "../../actions/cartActions"
 
 import { useNavigate } from "react-router-dom";
 
@@ -56,6 +56,7 @@ const Payment = () => {
         e.preventDefault();
         
         dispatch(createOrder(order))
+        dispatch(clearCart(cartItems))
         navigate('/success')
     }
 
