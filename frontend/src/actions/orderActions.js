@@ -96,14 +96,15 @@ export const allOrders = () => async (dispatch) => {
 
         dispatch({ type: ALL_ORDERS_REQUEST });
 
-        const { data } = await axios.get(`/api/v1/admin/all_orders`)
-
+        const { data } = await axios.get(`/api/v1/admin/orders`)
+       
         dispatch({
             type: ALL_ORDERS_SUCCESS,
             payload: data
         })
 
     } catch (error) {
+        console.log(error);
         dispatch({
             type: ALL_ORDERS_FAIL,
             payload: error.response.data.message

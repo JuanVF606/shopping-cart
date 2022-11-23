@@ -59,7 +59,7 @@ export const getProducts = (keyword = '', currentPage = 1, price, category, rati
         }
 
 		const { data } = await axios.get(link);
-		console.warn({data})
+		
 		
 		//step-4 
 		//after get data its dispatch ALL_PRODUCTS_SUCCESS
@@ -195,6 +195,7 @@ export const updateProduct = (id, productData) => async (dispatch) => {
         })
 
     } catch (error) {
+        console.log(error);
         dispatch({
             type: UPDATE_PRODUCT_FAIL,
             payload: error.response.data.message
