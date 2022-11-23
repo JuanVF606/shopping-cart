@@ -87,40 +87,25 @@ export const getProducts = (keyword = '', currentPage = 1, price, category, rati
 
 
 export const getProductDetails = (id) => async (dispatch) => {
+  try {
 
-	try{
-	
-		 //step-1
-		//first its dispatch ALL_PRODUCTS_REQUEST its going to productsReducers
-		//and take empty array of products
-		dispatch({ type: PRODUCT_DETAILS_REQUEST })
-		//step-3
-		//Second its get data from backend 
-		const { data } = await axios.get(`/api/v1/product/${id}`)
+      dispatch({ type: PRODUCT_DETAILS_REQUEST })
 
-		console.log(data)
-		
-		//step-4 
-		//after get data its dispatch ALL_PRODUCTS_SUCCESS
-		dispatch({ 
+      const { data } = await axios.get(`/api/v1/product/${id}`)
 
-			type: PRODUCT_DETAILS_SUCCESS,
-			payload: data.productById  
+      dispatch({
+          type: PRODUCT_DETAILS_SUCCESS,
+          payload: data.product
+      })
 
-			             //payload pass the data to product reducer on case number 2
-		})
-
-	}catch(error){
-		dispatch({
-
-			type: PRODUCT_DETAILS_FAIL,
-			payload: error.response.data.message
-
-
-		})
-	}
-
+  } catch (error) {
+      dispatch({
+          type: PRODUCT_DETAILS_FAIL,
+          payload: error.response.data.message
+      })
+  }
 }
+
 
 export const getAdminProducts = () => async (dispatch) => {
     try {

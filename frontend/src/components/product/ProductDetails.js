@@ -113,7 +113,7 @@ const ProductDetails = () => {
                     disabled={product.stock === 0}
                     onClick={addtoCart}
                   >
-                    Add to Cart
+                    Añadir al carro
                   </button>
 
                   <hr />
@@ -130,11 +130,11 @@ const ProductDetails = () => {
 
                   <hr />
 
-                  <h4 className="mt-2">Description:</h4>
+                  <h4 className="mt-2">Descripcion:</h4>
                   <p>{product.description}</p>
                   <hr />
                   <p id="product_seller mb-3">
-                    Sold by: <strong>{product.seller}</strong>
+                    Vendido Por: <strong>{product.seller}</strong>
                   </p>
 
                   <button
@@ -144,7 +144,7 @@ const ProductDetails = () => {
                     data-toggle="modal"
                     data-target="#ratingModal"
                   >
-                    Submit Your Review
+                    Enviar tu comentario
                   </button>
 
                   <div className="row mt-2 mb-5">
@@ -161,7 +161,7 @@ const ProductDetails = () => {
                           <div className="modal-content">
                             <div className="modal-header">
                               <h5 className="modal-title" id="ratingModalLabel">
-                                Submit Review
+                               Enviar 
                               </h5>
                               <button
                                 type="button"
@@ -202,7 +202,7 @@ const ProductDetails = () => {
                                 data-dismiss="modal"
                                 aria-label="Close"
                               >
-                                Submit
+                                Enviar
                               </button>
                             </div>
                           </div>
@@ -314,9 +314,7 @@ const ProductDetails = () => {
               >
                 Add to Cart
               </button>
-
               <hr />
-
               <p>
                 Status:{" "}
                 <span
@@ -326,16 +324,13 @@ const ProductDetails = () => {
                   {product.stock > 0 ? "In Stock" : "Out of Stock"}
                 </span>
               </p>
-
               <hr />
-
               <h4 className="mt-2">Description:</h4>
               <p>{product.description}</p>
               <hr />
               <p id="product_seller mb-3">
                 Sold by: <strong>{product.seller}</strong>
               </p>
-
               <button
                 id="review_btn"
                 type="button"
@@ -345,7 +340,6 @@ const ProductDetails = () => {
               >
                 Submit Your Review
               </button>
-
               <div className="row mt-2 mb-5">
                 <div className="rating w-50">
                   <div
@@ -389,13 +383,11 @@ const ProductDetails = () => {
                               <i className="fa fa-star"></i>
                             </li>
                           </ul>
-
                           <textarea
                             name="review"
                             id="review"
                             className="form-control mt-3"
                           ></textarea>
-
                           <button
                             className="btn my-3 float-right review-btn px-4 text-white"
                             data-dismiss="modal"
