@@ -19,7 +19,7 @@ const ProductsList = () => {
   const { loading, error, products } = useSelector((state) => state.products);
 
   useEffect(() => {
-    dispatch(getAdminProducts());
+    dispatch(getAdminProducts);
 
     if (error) {
       alert.error(error);
