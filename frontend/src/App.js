@@ -6,6 +6,7 @@ import {
   Route,
   Routes
 } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 // Pages visual Imports
 import Header from "./components/layout/Header";
@@ -31,6 +32,8 @@ import UpdateProfile from "./components/User/UpdateProfile";
 
 import ProtectedRoute from "./components/routes/ProtectedRoute";
 import Dashboard from "./components/admin/Dashboard";
+import ProductsList from "./components/admin/ProductList"
+import NewProduct from "./components/admin/NewProduct"
 
 // Products Import
 import store from "./store";
@@ -45,6 +48,7 @@ import Payment from "./components/cart/Payment";
 import OrderSuccess from "./components/cart/OrderSuccess";
 
 const App = () => {
+   const { user, isAuthenticated, loading } = useSelector(state => state.auth)
   useEffect(() => {
     store.dispatch(loadUser());
   }, []);
@@ -75,11 +79,22 @@ const App = () => {
             <Route path="/me/update" element={<ProtectedRoute><UpdateProfile /></ProtectedRoute>} exact />
             <Route path="/orders/me" element={<ProtectedRoute> <ListOrders /> </ProtectedRoute>} exact/>
             <Route path="/order/:id" element={<ProtectedRoute> <OrderDetails /> </ProtectedRoute>} exact/>    
-            {/* Admin Routes */}
-            <Route path="/dashboard" isAdmin={true} element={<ProtectedRoute> <Dashboard /></ProtectedRoute>} />
+            <Route path="/dashboard" isAdmin={true} element={<ProtectedRoute> <Dashboard /> </ProtectedRoute>} />
+<Route path="/admin/products" isAdmin={true} element={<ProtectedRoute> <ProductsList /> </ProtectedRoute>} />
+<Route path="/admin/product" isAdmin={true} element={<ProtectedRoute> <NewProduct /> </ProtectedRoute>} />
           </Routes>
         </div>
-        <Footer />
+          
+           
+            {/* <Routes><Route path="/admin/product/:id" isAdmin={true} element={<ProtectedRoute> <UpdateProduct /> </ProtectedRoute>} />  </Routes>  
+            <Routes><Route path="/admin/orders" isAdmin={true} element={<ProtectedRoute> <OrdersList /> </ProtectedRoute>} />  </Routes>  
+            <Routes><Route path="/admin/order/:id" isAdmin={true} element={<ProtectedRoute> <ProcessOrder /> </ProtectedRoute>} />  </Routes>  
+            <Routes><Route path="/admin/users" isAdmin={true} element={<ProtectedRoute> <UsersList /> </ProtectedRoute>} />  </Routes>  
+            <Routes><Route path="/admin/user/:id" isAdmin={true} element={<ProtectedRoute> <UpdateUser /> </ProtectedRoute>} />  </Routes>  
+            <Routes><Route path="/admin/reviews" isAdmin={true} element={<ProtectedRoute> <ProductReviews /> </ProtectedRoute>} />  </Routes>   */}
+        {!loading && (!isAuthenticated || user.role !== 'admin') && (
+          <Footer />)}
+        
       </div>
     </Router>
   );

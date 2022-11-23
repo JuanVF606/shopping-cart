@@ -13,7 +13,7 @@ const Header = () => {
 
   const { user, loading } = useSelector((state) => state.auth);
   const { cartItems } = useSelector((state) => state.cart);
-  // const { cartItems } = useSelector(state => state.cart)
+  
 
   const logoutHandler = () => {
     dispatch(logout());
@@ -26,7 +26,7 @@ const Header = () => {
         <div className="col-12 col-md-3">
           <div className="navbar-brand">
             <Link to="/">
-              <img alt={"Ecommerce Suhshi."} src="" />
+              <img alt={"Ecommerce Suhshi."} src="/images/Logo.png" />
             </Link>
           </div>
         </div>
