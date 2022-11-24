@@ -47,7 +47,8 @@ const productSchema = new mongoose.Schema({
         "Temaki",
         "Gunkan",
         "Entrantes",
-        "Tempura"
+        "Tempura",
+        "Bebestibles"
       ],
       message: "Please select correct category for product"
     }

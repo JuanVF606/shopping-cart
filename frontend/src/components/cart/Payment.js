@@ -44,6 +44,8 @@ const Payment = () => {
         shippingInfo
     }
 
+   
+    
     const orderInfo = JSON.parse(sessionStorage.getItem('orderInfo'));
     if (orderInfo) {
         order.itemsPrice = orderInfo.itemsPrice
@@ -52,10 +54,13 @@ const Payment = () => {
         order.totalPrice = orderInfo.totalPrice
     }
 
+    const sendOrder = async
+    
     const submitHandler = async (e) =>{
         e.preventDefault();
         
         dispatch(createOrder(order))
+        dispatch(sendOrder(order))
         dispatch(clearCart(cartItems))
         navigate('/success')
     }

@@ -22,7 +22,8 @@ const Profile = () => {
                     className="rounded-circle img-fluid"
                     src={user.avatar.url}
                     alt={user.name}
-                  />
+                    />
+                    <hr/>
                 </figure>
                 <Link
                   to="/me/update"

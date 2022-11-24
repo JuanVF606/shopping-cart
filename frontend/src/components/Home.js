@@ -19,19 +19,20 @@ const Range = createSliderWithTooltip(Slider.Range);
 
 const Home = () => {
   const [currentPage, setCurrentpage] = useState(1);
-  const [price, setPrice] = useState([1, 1000]);
+  const [price, setPrice] = useState([1000, 20000]);
   const [category, setCategory] = useState("");
   const [rating, setRating] = useState(0)
   const categories = [
-    "Maki",
-    "Uruamaki",
-    "Nigiri",
-    "Sashimi",
-    "Futomaki",
-    "Temaki",
-    "Gunkan",
-    "Entrantes",
-    "Tempura",
+   "Maki",
+        "Uruamaki",
+        "Nigiri",
+        "Sashimi",
+        "Futomaki",
+        "Temaki",
+        "Gunkan",
+        "Entrantes",
+        "Tempura",
+        "Bebestibles"
   ];
 
   const alert = useAlert();
@@ -75,11 +76,11 @@ const Home = () => {
                     {/* Price Filter */}
                     <Range
                       marks={{
-                        1: ` $1`,
                         1000: ` $1000`,
+                        20000: ` $20000`,
                       }}
-                      min={1}
-                      max={1000}
+                      min={1000}
+                      max={20000}
                       defaultValue={[1, 1000]}
                       tipFormatter={(value) => `$${value}`}
                       tipProps={{

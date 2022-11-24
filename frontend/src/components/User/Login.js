@@ -19,7 +19,7 @@ const Login = () => {
   const alert = useAlert();
   const dispatch = useDispatch();
 
-  const { isAuthenticated, error, loading } = useSelector(
+  const { isAuthenticated, error, loading, user} = useSelector(
     (state) => state.auth
   );
 
@@ -28,6 +28,7 @@ const Login = () => {
   useEffect(() => {
     if (isAuthenticated) {
       navigate(`${redirect}`);
+      
     }
 
     if (error) {
@@ -47,14 +48,14 @@ const Login = () => {
         <Loader />
       ) : (
         <Fragment>
-          <MetaData title={"Login"} />
+          <MetaData title={"Iniciar Sesion"} />
 
           <div className="row wrapper">
             <div className="col-10 col-lg-5">
               <form className="shadow-lg" onSubmit={submitHandler}>
-                <h1 className="mb-3">Login</h1>
+                <h1 className="mb-3">Iniciar Sesion</h1>
                 <div className="form-group">
-                  <label htmlFor="email_field">Email</label>
+                  <label htmlFor="email_field">Correo Electronico</label>
                   <input
                     type="email"
                     id="email_field"
@@ -66,7 +67,7 @@ const Login = () => {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="password_field">Password</label>
+                  <label htmlFor="password_field">Contraseña</label>
                   <input
                     type="password"
                     id="password_field"
@@ -78,7 +79,7 @@ const Login = () => {
                 </div>
 
                 <Link to="/password/forgot" className="float-right mb-4">
-                  Forgot Password?
+                  ¿Olvidaste tu Contraseña?
                 </Link>
 
                 <button
@@ -86,11 +87,11 @@ const Login = () => {
                   type="submit"
                   className="btn btn-block py-3"
                 >
-                  LOGIN
+                  Acceder
                 </button>
 
                 <Link to="/register" className="float-right mt-3">
-                  New User?
+                  ¿Eres Nuevo?
                 </Link>
               </form>
               

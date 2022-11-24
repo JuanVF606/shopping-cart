@@ -77,10 +77,10 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
 
 // Forgot password => /api/v1/password/forgot
 exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
-  const user = await User.findOne({ run: req.body.run });
+  const user = await User.findOne({ email: req.body.email });
 
   if (!user) {
-    return next(new ErrorHandler("User not found with this run", 404));
+    return next(new ErrorHandler("User not found with this email", 404));
   }
 
   // Get reset token
@@ -89,11 +89,9 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
   await user.save({ validateBeforeSave: false });
 
   // Create reset password url
-  const resetUrl = `${req.protocol}://${req.get(
-    "host"
-  )}/password/reset/${resetToken}`;
+  const resetUrl = `${process.env.FRONTEND_URL}/password/reset/${resetToken}`;
 
-  const message = `Your password reset token is as follow:\n\n${resetUrl}\n\nIf you have not requested this run, then ignore it.`;
+  const message = `Tu link para restablecer la contraseña es=>\n\n${resetUrl}\n\nSi tu no lo has solicitado, Solo ignoralo :)`;
 
   try {
     await sendEmail({
@@ -367,4 +365,5 @@ exports.registerAdminUser = catchAsyncErrors(async (req, res, next) => {
     },
   });
 
- });
+});
+

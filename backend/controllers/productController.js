@@ -109,7 +109,7 @@ exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
 
 exports.getAdminProducts = catchAsyncErrors(async (req, res, next) => {
   const products = await Product.find();
-  console.log(products);
+  
   res.status(200).json({
     success: true,
     products,

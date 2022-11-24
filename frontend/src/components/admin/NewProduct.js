@@ -30,6 +30,7 @@ const NewProduct = () => {
         "Gunkan",
         "Entrantes",
         "Tempura",
+        "Bebestibles"
     ]
 
     const alert = useAlert();
@@ -104,10 +105,10 @@ const NewProduct = () => {
                     <Fragment>
                         <div className="wrapper my-5">
                             <form className="shadow-lg" onSubmit={submitHandler} encType='multipart/form-data'>
-                                <h1 className="mb-4">New Product</h1>
+                                <h1 className="mb-4">Nuevo Producto</h1>
 
                                 <div className="form-group">
-                                    <label htmlFor="name_field">Name</label>
+                                    <label htmlFor="name_field">Nombre</label>
                                     <input
                                         type="text"
                                         id="name_field"
@@ -118,10 +119,12 @@ const NewProduct = () => {
                                 </div>
 
                                 <div className="form-group">
-                                    <label htmlFor="price_field">Price</label>
+                                    <label htmlFor="price_field">Precio</label>
                                     <input
                                         type="text"
                                         id="price_field"
+                                        min={1000}
+                                        max={20000}
                                         className="form-control"
                                         value={price}
                                         onChange={(e) => setPrice(e.target.value)}
@@ -129,12 +132,12 @@ const NewProduct = () => {
                                 </div>
 
                                 <div className="form-group">
-                                    <label htmlFor="description_field">Description</label>
+                                    <label htmlFor="description_field">Breve Descripcion</label>
                                     <textarea className="form-control" id="description_field" rows="8" value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
                                 </div>
 
                                 <div className="form-group">
-                                    <label htmlFor="category_field">Category</label>
+                                    <label htmlFor="category_field">Categoria</label>
                                     <select className="form-control" id="category_field" value={category} onChange={(e) => setCategory(e.target.value)}>
                                         {categories.map(category => (
                                             <option key={category} value={category} >{category}</option>
@@ -154,7 +157,7 @@ const NewProduct = () => {
                                 </div>
 
                                 <div className="form-group">
-                                    <label htmlFor="seller_field">Seller Name</label>
+                                    <label htmlFor="seller_field">Nombre Vendedor</label>
                                     <input
                                         type="text"
                                         id="seller_field"
@@ -165,7 +168,7 @@ const NewProduct = () => {
                                 </div>
 
                                 <div className='form-group'>
-                                    <label>Images</label>
+                                    <label>Imagenes</label>
 
                                     <div className='custom-file'>
                                         <input
@@ -177,7 +180,7 @@ const NewProduct = () => {
                                             multiple
                                         />
                                         <label className='custom-file-label' htmlFor='customFile'>
-                                            Choose Images
+                                            Selecciona una o mas imagenes
                                         </label>
                                     </div>
 
@@ -194,7 +197,7 @@ const NewProduct = () => {
                                     className="btn btn-block py-3"
                                     disabled={loading ? true : false}
                                 >
-                                    CREATE
+                                    AGREGAR
                                 </button>
 
                             </form>

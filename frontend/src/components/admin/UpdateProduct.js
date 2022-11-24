@@ -13,6 +13,7 @@ import {
 import { UPDATE_PRODUCT_RESET } from "../../constants/productConstants";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const UpdateProduct = () => {
   const navigate = useNavigate();
@@ -38,6 +39,7 @@ const UpdateProduct = () => {
     "Gunkan",
     "Entrantes",
     "Tempura",
+    "Bebestibles",
   ];
 
   const alert = useAlert();
@@ -76,8 +78,8 @@ const UpdateProduct = () => {
     }
 
     if (isUpdated) {
-      navigate("/admin/products");
       alert.success("Product updated successfully");
+      navigate("/admin/products");
       dispatch({ type: UPDATE_PRODUCT_RESET });
     }
   }, [
@@ -146,7 +148,7 @@ const UpdateProduct = () => {
                 onSubmit={submitHandler}
                 encType="multipart/form-data"
               >
-                <h1 className="mb-4">Update Product</h1>
+                <h1 className="mb-4">Actualizar Producto</h1>
 
                 <div className="form-group">
                   <label htmlFor="name_field">Name</label>
@@ -160,18 +162,20 @@ const UpdateProduct = () => {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="price_field">Price</label>
+                  <label htmlFor="price_field">Precio</label>
                   <input
                     type="text"
                     id="price_field"
                     className="form-control"
+                    min={1000}
+                    max={20000}
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
                   />
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="description_field">Description</label>
+                  <label htmlFor="description_field">Descripcion</label>
                   <textarea
                     className="form-control"
                     id="description_field"
@@ -182,7 +186,7 @@ const UpdateProduct = () => {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="category_field">Category</label>
+                  <label htmlFor="category_field">Categoria</label>
                   <select
                     className="form-control"
                     id="category_field"
@@ -208,7 +212,7 @@ const UpdateProduct = () => {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="seller_field">Seller Name</label>
+                  <label htmlFor="seller_field">Nombre Vendedor</label>
                   <input
                     type="text"
                     id="seller_field"
@@ -265,7 +269,7 @@ const UpdateProduct = () => {
                   className="btn btn-block py-3"
                   disabled={loading ? true : false}
                 >
-                  UPDATE
+                  Actualizar
                 </button>
               </form>
             </div>
