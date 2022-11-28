@@ -3,87 +3,59 @@ const mongoose = require("mongoose");
 const productSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [true, "Please enter product name"],
+    required: [true, "Porfavor ingrese un nombre para su producto"],
     trim: true,
-    maxLength: [100, "product name cannot exceed 100 characters"]
+    
   },
   price: {
     type: Number,
-    required: [true, "Please enter product price"],
+    required: [true, "Porfavor ingrese un precio para su venta"],
     trim: true,
-    maxLength: [5, "product price cannot exceed 5 characters"],
-    default: 0.0
+    maxLength: [5, "El precio del producto no puede pasar sobre las 5 cifras"],
+    default: 0,
   },
   description: {
     type: String,
-    required: [true, "Please enter product description"]
-  },
-  ratings: {
-    type: Number,
-    default: 0
+    required: [true, "Por favor ingresa una descripcion"],
   },
   images: [
     {
       public_id: {
         type: String,
-        required: true
+        required: true,
       },
       url: {
         type: String,
-        required: true
-      }
-    }
+        required: true,
+      },
+    },
   ],
   category: {
     type: String,
-    required: [true, "Please select category for this product"],
+    required: [true, "Selecciona una categoria"],
     enum: {
-      values: [
-        "Maki",
-        "Uruamaki",
-        "Nigiri",
-        "Sashimi",
-        "Futomaki",
-        "Temaki",
-        "Gunkan",
-        "Entrantes",
-        "Tempura",
-        "Bebestibles"
-      ],
-      message: "Please select correct category for product"
-    }
+      values: ["Ninguna Categoria","Rolls Especiales", "Rolls sin Arroz", "Rolls Apanados","Rolls Frios", "Vegi Rolls", "APPETIEZERS","Bebestibles","Salsas y Extras"],
+      message: "Por favor selecciona una categoria",
+    },
   },
-  seller:{
-    type:String,
-    default: "Fukusuke Sushi"
-  }
-  ,
+  seller: {
+    type: String,
+    default: "Fukusuke Sushi",
+  },
   stock: {
     type: Number,
-    requried: [true, "Please enter product stock"],
-    maxLength: [5, "product name cannot exceed 5 characters"],
-    default: 0
+    requried: [true, "Por favor Ingresa una cantidad para su Venta"],
+    default: 0,
   },
-  numberOfReviews: {
-    type: Number,
-    default: 0
-  },
-  reviews: [
-    {
-      name: { type: String, requried: true },
-      rating: { type: Number, required: true },
-      comment: { type: String, required: true }
-    }
-  ],
   user: {
     type: mongoose.Schema.ObjectId,
-    ref: 'User',
-    required: true
-},
-  createdAt:{
-    type:Date,
-    default:Date.now
-  }
+    ref: "User",
+    required: true,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 module.exports = mongoose.model("Product", productSchema);

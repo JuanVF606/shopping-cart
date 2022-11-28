@@ -104,7 +104,7 @@ const OrdersList = () => {
 
                 <div className="col-12 col-md-10">
                     <Fragment>
-                        <h1 className="my-5">All Orders</h1>
+                        <h1 className="my-5">Todas las ordenes</h1>
 
                         {loading ? <Loader /> : (
                             <MDBDataTable

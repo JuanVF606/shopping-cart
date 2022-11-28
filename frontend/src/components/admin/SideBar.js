@@ -14,32 +14,14 @@ const SideBar = () => {
           </li>
 
           <li>
-            <a
-              href="#productSubmenu"
-              data-toggle="collapse"
-              aria-expanded="false"
-              className="dropdown-toggle"
-            >
-              <i className="fa fa-product-hunt"></i> Products
-            </a>
-            <ul className="collapse list-unstyled" id="productSubmenu">
-              <li>
                 <Link to="/admin/products">
-                  <i className="fa fa-clipboard"></i> All
+                <i className="fa fa-product-hunt"></i> Productos
                 </Link>
-              </li>
-
-              <li>
-                <Link to="/admin/product">
-                  <i className="fa fa-plus"></i> Create
-                </Link>
-              </li>
-            </ul>
           </li>
 
           <li>
             <Link to="/admin/orders">
-              <i className="fa fa-shopping-basket"></i> Orders
+              <i className="fa fa-shopping-basket"></i> Pedidos
             </Link>
           </li>
 
@@ -50,30 +32,17 @@ const SideBar = () => {
               aria-expanded="false"
               className="dropdown-toggle"
             >
-              <i className="fa fa-user"></i> User
+              <i className="fa fa-user"></i> Usuarios
             </a>
             <ul className="collapse list-unstyled" id="Usersubmenu">
                            <li>
                 <Link to="/admin/register">
-                  <i className="fa fa-plus"></i> Create
+                  <i className="fa fa-plus"></i> Añadir
                 </Link>
               </li>
             </ul>
           </li>
 
-
-          {/* <li>
-            
-            <Link to="/admin/users">
-              <i className="fa fa-users"></i> Users
-            </Link>
-          </li> */}
-
-          <li>
-            <Link to="/admin/reviews">
-              <i className="fa fa-star"></i> Reviews
-            </Link>
-          </li>
         </ul>
       </nav>
     </div>

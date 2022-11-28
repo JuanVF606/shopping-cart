@@ -68,9 +68,9 @@ const ProcessOrder = () => {
                             <div className="row d-flex justify-content-around">
                                 <div className="col-12 col-lg-7 order-details">
 
-                                    <h2 className="my-5">Order # {order._id}</h2>
+                                    <h2 className="my-5">Orden # {order._id}</h2>
 
-                                    <h4 className="mb-4">Informacion de envio</h4>
+                                    <h4 className="mb-4">Informacion de envio:</h4>
                                     <p><b>Nombre:</b> {user && user.nombre_completo}</p>
                                     <p><b>Numero De Telefono:</b> {shippingInfo && shippingInfo.numero_telefono}</p>
                                     <p className="mb-4"><b>Direccion:</b>{shippingDetails}</p>
@@ -78,18 +78,16 @@ const ProcessOrder = () => {
 
                                     <hr />
 
-                                    <h4 className="my-4">Payment</h4>
+                                    <h4 className="my-4">Estado de Pago</h4>
                                     <p className={isPaid ? "greenColor" : "redColor"}><b>{isPaid ? "PAGADO" : "NO PAGADO"}</b></p>
 
-                                    <h4 className="my-4">Stripe ID</h4>
-                                    <p><b>{paymentInfo && paymentInfo.id}</b></p>
-
-                                    <h4 className="my-4">Order Status:</h4>
-                                    <p className={order.orderStatus && String(order.orderStatus).includes('Delivered') ? "greenColor" : "redColor"} ><b>{orderStatus}</b></p>
+                                    
+                                    <h4 className="my-4">Estado de Orden:</h4>
+                                    <p className={order.orderStatus && String(order.orderStatus).includes('En camino') ? "greenColor" : "redColor"} ><b>{orderStatus}</b></p>
 
 
 
-                                    <h4 className="my-4">Order Items:</h4>
+                                    <h4 className="my-4">Detalle de la Orden:</h4>
 
                                     <hr />
                                     <div className="cart-item my-1">
@@ -109,7 +107,7 @@ const ProcessOrder = () => {
                                                 </div>
 
                                                 <div className="col-4 col-lg-3 mt-4 mt-lg-0">
-                                                    <p>{item.quantity} Piece(s)</p>
+                                                    <p>Cantidad : {item.quantity}</p>
                                                 </div>
                                             </div>
                                         ))}
@@ -118,7 +116,7 @@ const ProcessOrder = () => {
                                 </div>
 
                                 <div className="col-12 col-lg-3 mt-5">
-                                    <h4 className="my-4">Status</h4>
+                                    <h4 className="my-4">Estado del pedido</h4>
 
                                     <div className="form-group">
                                         <select
@@ -134,7 +132,7 @@ const ProcessOrder = () => {
                                     </div>
 
                                     <button className="btn btn-primary btn-block" onClick={() => updateOrderHandler(order._id)}>
-                                        Update Status
+                                        Actualizar
                                     </button>
                                 </div>
 

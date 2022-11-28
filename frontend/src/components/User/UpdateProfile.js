@@ -149,7 +149,7 @@ const UpdateProfile = () => {
                     onChange={onChange}
                   />
                   <label className="custom-file-label" htmlFor="customFile">
-                    Choose Avatar
+                    Escoger Avatar
                   </label>
                 </div>
               </div>
@@ -160,7 +160,7 @@ const UpdateProfile = () => {
               className="btn update-btn btn-block mt-4 mb-3"
               disabled={loading ? true : false}
             >
-              Update
+              Actualizar
             </button>
           </form>
         </div>

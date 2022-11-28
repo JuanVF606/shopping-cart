@@ -53,13 +53,19 @@ const ProductsList = () => {
           sort: "asc",
         },
         {
-          label: "Name",
-          field: "name",
+          label: "Nombre",
+          field: "nombre",
           sort: "asc",
         },
+    
         {
-          label: "Price",
-          field: "price",
+          label: "Categoria",
+          field: "categoria",
+          sort: "asc"
+        },
+            {
+          label: "Precio",
+          field: "precio",
           sort: "asc",
         },
         {
@@ -78,8 +84,9 @@ const ProductsList = () => {
     products.forEach((product) => {
       data.rows.push({
         id: product._id,
-        name: product.name,
-        price: `$${product.price}`,
+        nombre: product.name,
+        categoria: product.category,
+        precio: `$${product.price}`,
         stock: product.stock,
         actions: (
           <Fragment>
@@ -107,7 +114,7 @@ const ProductsList = () => {
   };
   return (
     <Fragment>
-      <MetaData title={"All Products"} />
+      <MetaData title={"Admin-Productos-Todos"} />
       <div className="row">
         <div className="col-12 col-md-2">
           <Sidebar />
@@ -115,14 +122,19 @@ const ProductsList = () => {
 
         <div className="col-12 col-md-10">
           <Fragment>
-            <h1 className="my-5">All Products</h1>
-
+            <h1 className="my-5">Todos  los Productos</h1>
+            <button  id ="login_button" className="btn btn-block ">
+             <Link to="/admin/product">
+                  <i className="fa fa-plus"></i> agregar
+                </Link>
+            </button>
+            <hr />
             {loading ? (
               <Loader />
             ) : (
               <MDBDataTable
                 data={setProducts()}
-                className="px-3"
+                className="px-2"
                 bordered
                 striped
                 hover

@@ -77,6 +77,7 @@ const UserRegister = () => {
     formData.set("numero_telefono", numero_telefono);
     formData.set("password", password);
     formData.set("avatar", avatar);
+    
     dispatch(AdminUserregister(formData));
   };
 
@@ -99,7 +100,7 @@ const UserRegister = () => {
 
     return (
         <Fragment>
-            <MetaData title={"Añadir Producto"} />
+            <MetaData title={"Añadir Usuario"} />
             <div className="row">
                 <div className="col-12 col-md-2">
                     <SideBar />

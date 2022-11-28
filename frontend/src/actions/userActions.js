@@ -237,3 +237,27 @@ export const resetPassword = (token,passwords) => async (dispatch) => {
     });
   }
 };
+
+export const AdminUserregister = (userData) => async (dispatch) => {
+  try {
+      dispatch({ type: REGISTER_USER_REQUEST });
+
+      const config = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
+      let link = `/api/v1/admin/register`;
+      // Post to database
+      const { data } = await axios.post(link, userData, config);
+      dispatch({
+        type: REGISTER_USER_SUCCESS,
+        payload: data.user,
+      });
+    } catch (error) {
+      dispatch({
+        type: REGISTER_USER_FAIL,
+        payload: error.response.data.message,
+      });
+    }
+ }

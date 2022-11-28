@@ -15,18 +15,7 @@ function Product({ product, col }) {
                 <h5 className="card-title">
                   <Link to={`/product/${product._id}`}>{product.name}</Link>
                 </h5>
-                <div className="ratings mt-auto">
-                  <div className="rating-outer">
-                    <div
-                      className="rating-inner"
-                      style={{ width: `${(product.ratings / 5) * 100}%` }}
-                    ></div>
-                  </div>
-                  <span id="no_of_reviews">
-                    ({product.numberOfReviews} Reviews)
-                  </span>
-                </div>
-
+                
                 <p className="card-text" id="number">
                   {numberFormat(price)}
                 </p>
@@ -34,14 +23,14 @@ function Product({ product, col }) {
                   id="stock_status"
                   className={product.stock > 0 ? "greenColor" : "redColor"}
                 >
-                  {product.stock > 0 ? "In Stock" : "Out of Stock"}
+                  {product.stock > 0 ? "Disponible" : "No Disponible"}
                 </span>
                 <Link
                   to={`/product/${product._id}`}
                   id="view_btn"
                   className="btn btn-block"
                 >
-                  View Details
+                  Ver Detalles
                 </Link>
               </Fragment>
             ) : (
@@ -68,7 +57,7 @@ function Product({ product, col }) {
                   id="stock_status"
                   className={product.stock > 0 ? "greenColor" : "redColor"}
                 >
-                  {product.stock > 0 ? "In Stock" : "Out of Stock"}
+                  {product.stock > 0 ? "Disponible" : "No Disponible"}
                 </span>
               </Fragment>
             )}

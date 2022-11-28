@@ -53,6 +53,7 @@ import ConfirmOrder from "./components/cart/ConfirmOrder";
 //Payment
 import Payment from "./components/cart/Payment";
 import OrderSuccess from "./components/cart/OrderSuccess";
+import UserRegister from "./components/admin/UserRegister";
 
 
 const App = () => {
@@ -100,6 +101,7 @@ const App = () => {
           <Route path="/admin/product/:id" isAdmin={true} element={<ProtectedRoute> <UpdateProduct /> </ProtectedRoute>}exact /> 
           <Route path="/admin/orders" isAdmin={true} element={<ProtectedRoute> <OrdersList /> </ProtectedRoute>} exact/>
           <Route path="/admin/order/:id" isAdmin={true} element={<ProtectedRoute> <ProcessOrder /> </ProtectedRoute>} exact />
+          <Route path="/admin/register" isAdmin={ true} element={<ProtectedRoute> <UserRegister/></ProtectedRoute>} exact />
         </Routes>
            
             {/*  </Routes>  

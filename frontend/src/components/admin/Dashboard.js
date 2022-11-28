@@ -90,7 +90,7 @@ const Dashboard = () => {
               <div className="card text-white bg-warning o-hidden h-100">
                 <div className="card-body">
                   <div className="text-center card-font-size">
-                    Out of Stock
+                    No Disponible
                     <br /> <b>4</b>
                   </div>
                 </div>

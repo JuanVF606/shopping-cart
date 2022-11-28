@@ -1,100 +1,111 @@
-import React, { Fragment, useEffect, useState } from "react";
-import MetaData from "./layout/MetaData";
+import React, { Fragment, useState, useEffect } from "react";
+import Pagination from "react-js-pagination";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
-import Pagination from "react-js-pagination";
 
-import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../actions/productActions";
-
+import MetaData from "./layout/MetaData";
 import Product from "./product/Product";
 import Loader from "./layout/Loader";
 
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts } from "../actions/productActions";
 import { useAlert } from "react-alert";
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router";
 
-// Filter Price range
 const { createSliderWithTooltip } = Slider;
 const Range = createSliderWithTooltip(Slider.Range);
 
 const Home = () => {
-  const [currentPage, setCurrentpage] = useState(1);
-  const [price, setPrice] = useState([1000, 20000]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [price, setPrice] = useState([990, 15990]);
   const [category, setCategory] = useState("");
-  const [rating, setRating] = useState(0)
+  const [rating, setRating] = useState(0);
+
   const categories = [
-   "Maki",
-        "Uruamaki",
-        "Nigiri",
-        "Sashimi",
-        "Futomaki",
-        "Temaki",
-        "Gunkan",
-        "Entrantes",
-        "Tempura",
-        "Bebestibles"
+    "Ninguna Categoria",
+    "Rolls Especiales",
+    "Rolls sin Arroz",
+    "Rolls Apanados",
+    "Rolls Frios",
+    "Vegi Rolls",
+    "APPETIEZERS",
+    "Bebestibles",
+    "Salsas y Extras",
   ];
-
   const alert = useAlert();
-  const params = useParams();
-  const keyword = params.keyword;
   const dispatch = useDispatch();
+  const params = useParams();
 
-  const { loading, products, error, productsCount, resPerPage, filteredProductsCount } = useSelector(
-    (state) => state.products
-  );
+  const {
+    loading,
+    products,
+    error,
+    productCount,
+    resPerPage,
+    filteredProductsCount,
+  } = useSelector((state) => state.products);
 
+  const keyword = params.keyword;
+
+  // const keyword =  { params }
+
+  //we can use useEffect Hook
+  //its useEffects run and dispacth getproducts
   useEffect(() => {
     if (error) {
-      alert.success("success");
       return alert.error(error);
     }
-    dispatch(getProducts(keyword, currentPage, price, category,rating));
-  }, [dispatch, alert, error, keyword, currentPage, price, category,rating]);
 
-  function setCurrentpageNo(pageNumber) {
-    setCurrentpage(pageNumber);
+    dispatch(getProducts(keyword, currentPage, price, category, rating));
+  }, [dispatch, alert, error, keyword, currentPage, price, category, rating]); //dependencies
+
+  function setCurrentPageNo(pageNumber) {
+    setCurrentPage(pageNumber);
+  }
+  let count = productCount;
+  if (keyword) {
+    count = filteredProductsCount;
   }
 
-  let count = productsCount
-  if(keyword){
-    count = filteredProductsCount
-  }
   return (
     <Fragment>
       {loading ? (
         <Loader />
       ) : (
         <Fragment>
-          <MetaData title={"Buy Best Food Online"} />
+          <MetaData title={"Buy Best product online"} />
+
           <h1 id="products_heading">Ultimos Productos</h1>
+
           <section id="products" className="container mt-5">
             <div className="row">
               {keyword ? (
                 <Fragment>
-                  <div className="col-6 col-md-3 mt-5 mb-5">
-                    {/* Price Filter */}
-                    <Range
-                      marks={{
-                        1000: ` $1000`,
-                        20000: ` $20000`,
-                      }}
-                      min={1000}
-                      max={20000}
-                      defaultValue={[1, 1000]}
-                      tipFormatter={(value) => `$${value}`}
-                      tipProps={{
-                        placement: "top",
-                        visible: true,
-                      }}
-                      value={price}
-                      onChange={(price) => setPrice(price)}
-                    />
-                    {/* Category Filter */}
-                    <hr className='my-5' />
-                      <div className='mt-5'>
-                        <h4 className='mb-3'>categories</h4>
-                        <ul className='pl-0'>
+                  <div className="co;-6 col-md-3 mt-5 mb-5">
+                    <div className="px-5">
+                      <Range
+                        marks={{
+                          300: `$300`,
+                          15990: `$15990`,
+                        }}
+                        min={990}
+                        max={15990}
+                        defaultValue={[300, 15990]}
+                        tipFormatter={(value) => `$${value}`}
+                        tipProps={{
+                          placement: "top",
+                          visible: true,
+                        }}
+                        value={price}
+                        onChange={(price) => setPrice(price)}
+                      />
+
+                      <hr className="my-5" />
+
+                      <div className="mt-5">
+                        <h4 className="mb-3">Categories</h4>
+
+                        <ul className="pl-0">
                           {categories.map((category) => (
                             <li
                               style={{
@@ -102,40 +113,18 @@ const Home = () => {
                                 listStyleType: "none",
                               }}
                               key={category}
-                              onClick={() => {
-                                setCategory(category);
-                              }}
+                              onClick={() => setCategory(category)}
                             >
                               {category}
                             </li>
                           ))}
                         </ul>
-                        {/* Rating Filter */}
-                        <hr className='my-3' />
-                      <div className='mt-5'>
-                        <h4 className='mb-3'>Rating</h4>
-                        <ul className='pl-0'>
-                          {[5,4,3,2,1].map((star) => (
-                            <li
-                              style={{
-                                cursor: "pointer",
-                                listStyleType: "none",
-                              }}
-                              key={star}
-                              onClick={() => {
-                                setRating(star);
-                              }}
-                            >
-                              <div className="rating-outer">
-                                <div className="rating-inner" style={{width: `${star *20}%`}}>
+                      </div>
 
-                                </div>
-                              </div>
-                            </li>
-                          ))}
-                        </ul>
-                   </div>
-                   </div>
+                      <hr className="my-3" />
+
+                      
+                    </div>
                   </div>
                   <div className="col-6 col-md-9">
                     <div className="row">
@@ -152,17 +141,18 @@ const Home = () => {
               )}
             </div>
           </section>
+
           {resPerPage <= count && (
             <div className="d-flex justify-content-center mt-5">
               <Pagination
                 activePage={currentPage}
                 itemsCountPerPage={resPerPage}
-                totalItemsCount={productsCount}
-                onChange={setCurrentpageNo}
+                totalItemsCount={productCount}
+                onChange={setCurrentPageNo}
                 nextPageText={"Next"}
                 prevPageText={"Prev"}
                 firstPageText={"First"}
-                lastPageText={"last"}
+                lastPageText={"Last"}
                 itemClass="page-item"
                 linkClass="page-link"
               />

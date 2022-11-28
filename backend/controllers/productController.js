@@ -40,26 +40,32 @@ exports.newProduct = catchAsyncErrors(async (req, res, next) => {
 });
 // Get all Products => /api/v1/products
 exports.getProducts = catchAsyncErrors(async (req, res, next) => {
-  const resPerPage = 4;
-  const productsCount = await Product.countDocuments();
+  	const resPerPage =4;
+	const productCount = await Product.countDocuments();
 
-  const apiFeatures = new APIFeatures(Product.find(), req.query)
-    .search()
-    .filter();
+	
 
-  let products = await apiFeatures.query;
-  let filteredProductsCount = products.length;
+	const apiFeatures = new APIFeatures(Product.find(), req.query)
+						.search().filter()
 
-  apiFeatures.pagination(resPerPage);
-  products = await apiFeatures.query.clone();
+		let products = await apiFeatures.query;
+		let filteredProductsCount = products.length;
 
-  res.status(200).json({
-    success: true,
-    productsCount,
-    resPerPage,
-    filteredProductsCount,
-    products,
-  });
+		apiFeatures.pagination(resPerPage)
+		products = await apiFeatures.query.clone() 
+
+	//await bcz data are coming from server 
+	// const products = await Product.find();
+
+	res.status(200).json({
+		success: true,
+		// count:  products.length,
+		productCount,
+		resPerPage,
+		filteredProductsCount,
+		products
+		
+	})
 });
 
 // Get Single product details => /api/v1/product/:id

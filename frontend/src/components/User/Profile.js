@@ -22,48 +22,57 @@ const Profile = () => {
                     className="rounded-circle img-fluid"
                     src={user.avatar.url}
                     alt={user.name}
-                    />
-                    <hr/>
+                  />
+                  <hr />
                 </figure>
                 <Link
+                  className="btn btn-primary btn-block my-5 rounded-bottom"
                   to="/me/update"
                   id="edit_profile"
-                  className="btn btn-primary btn-block my-5"
                 >
-                  Edit Profile
+                  Editar Perfil
                 </Link>
               </div>
 
-              <div className="col-12 col-md-5 border">
-                
-                <h4>Nombre Completo</h4>   
+              <div className="col-6 col-md-5">
+                <h4>Nombre Completo</h4>
                 <p>{user.nombre_completo}</p>
+                <hr />
                 <h4>Sexo</h4>
-                <p>{user.sexo}</p>         
+                <p>{user.sexo}</p> <hr />
                 <h4>Rut</h4>
                 <p>{user.run}</p>
+                <hr />
                 <h4>Fecha De Nacimiento</h4>
                 <p>{user.fecha_nacimiento}</p>
-
+                <hr />
                 <h4>Numero de Telefono</h4>
                 <p>{user.numero_telefono}</p>
-
+                <hr />
                 <h4>Email Address</h4>
                 <p>{user.email}</p>
-
+                <hr />
                 <h4>Direccion</h4>
-                <p>{user.direccion} {user.comuna}</p>
-
+                <p>
+                  {user.direccion} {user.comuna}
+                </p>
+                <hr />
                 <h4>Joined On</h4>
                 <p>{String(user.createAt).substring(0, 10)}</p>
-
-                {user.role !== "admin" &&(
-                    <Link href="/orders/me" className="btn btn-danger btn-block mt-5">
-                     My Orders
-                   </Link>
+                <hr />
+                {user.role !== "admin" && (
+                  <Link
+                    to="/orders/me"
+                    className="btn btn-danger btn-block mt-5"
+                  >
+                    My Orders
+                  </Link>
                 )}
-                <Link to="/password/update" className="btn btn-primary btn-block mt-3">
-                  Change Password
+                <Link
+                  to="/password/update"
+                  className="btn btn-primary btn-block mt-3"
+                >
+                  Cambiar Contraseña
                 </Link>
               </div>
             </div>

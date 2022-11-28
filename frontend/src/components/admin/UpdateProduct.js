@@ -13,7 +13,6 @@ import {
 import { UPDATE_PRODUCT_RESET } from "../../constants/productConstants";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 
 const UpdateProduct = () => {
   const navigate = useNavigate();
@@ -23,75 +22,63 @@ const UpdateProduct = () => {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [stock, setStock] = useState(0);
-  const [seller, setSeller] = useState("");
   const [images, setImages] = useState([]);
 
   const [oldImages, setOldImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
 
   const categories = [
-    "Maki",
-    "Uruamaki",
-    "Nigiri",
-    "Sashimi",
-    "Futomaki",
-    "Temaki",
-    "Gunkan",
-    "Entrantes",
-    "Tempura",
+    "Ninguna Categoria",
+    "Rolls Especiales",
+    "Rolls sin Arroz",
+    "Rolls Apanados",
+    "Rolls Frios",
+    "Vegi Rolls",
+    "APPETIEZERS",
     "Bebestibles",
+    "Salsas y Extras",
   ];
+   const alert = useAlert();
+    const dispatch = useDispatch();
 
-  const alert = useAlert();
-  const dispatch = useDispatch();
+    const { error, product } = useSelector(state => state.productDetails)
+    const { loading, error: updateError, isUpdated } = useSelector(state => state.product);
 
-  const { error, product } = useSelector((state) => state.productDetails);
-  const {
-    loading,
-    error: updateError,
-    isUpdated,
-  } = useSelector((state) => state.product);
+    const productId = params.id;
 
-  const productId = params.id;
+    useEffect(() => {
 
-  useEffect(() => {
-    if (product && product._id !== productId) {
-      dispatch(getProductDetails(productId));
-    } else {
-      setName(product.name);
-      setPrice(product.price);
-      setDescription(product.description);
-      setCategory(product.category);
-      setSeller(product.seller);
-      setStock(product.stock);
-      setOldImages(product.images);
-    }
+        if (product && product._id !== productId) {
+            dispatch(getProductDetails(productId));
+        } else {
+            setName(product.name);
+            setPrice(product.price);
+            setDescription(product.description);
+            setCategory(product.category);
+            setStock(product.stock)
+            setOldImages(product.images)
+        }
 
-    if (error) {
-      alert.error(error);
-      dispatch(clearErrors());
-    }
+        if (error) {
+            alert.error(error);
+            dispatch(clearErrors())
+        }
 
-    if (updateError) {
-      alert.error(updateError);
-      dispatch(clearErrors());
-    }
+        if (updateError) {
+            alert.error(updateError);
+            dispatch(clearErrors())
+        }
 
-    if (isUpdated) {
-      alert.success("Product updated successfully");
-      navigate("/admin/products");
-      dispatch({ type: UPDATE_PRODUCT_RESET });
-    }
-  }, [
-    dispatch,
-    alert,
-    error,
-    isUpdated,
-    updateError,
-    product,
-    productId,
-    navigate,
-  ]);
+
+        if (isUpdated) {
+            navigate('/admin/products');
+            alert.success('Product updated successfully');
+            dispatch({ type: UPDATE_PRODUCT_RESET })
+        }
+
+    }, [dispatch, alert, error, isUpdated, updateError, product, productId,navigate])
+
+
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -102,7 +89,7 @@ const UpdateProduct = () => {
     formData.set("description", description);
     formData.set("category", category);
     formData.set("stock", stock);
-    formData.set("seller", seller);
+    
 
     images.forEach((image) => {
       formData.append("images", image);
@@ -167,10 +154,11 @@ const UpdateProduct = () => {
                     type="text"
                     id="price_field"
                     className="form-control"
-                    min={1000}
-                    max={20000}
+                    min={300}
+                    max={15990}
                     value={price}
                     onChange={(e) => setPrice(e.target.value)}
+                    
                   />
                 </div>
 
@@ -182,6 +170,7 @@ const UpdateProduct = () => {
                     rows="8"
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
+                    
                   ></textarea>
                 </div>
 
@@ -192,6 +181,7 @@ const UpdateProduct = () => {
                     id="category_field"
                     value={category}
                     onChange={(e) => setCategory(e.target.value)}
+                    
                   >
                     {categories.map((category) => (
                       <option key={category} value={category}>
@@ -208,20 +198,11 @@ const UpdateProduct = () => {
                     className="form-control"
                     value={stock}
                     onChange={(e) => setStock(e.target.value)}
+                    
                   />
                 </div>
 
-                <div className="form-group">
-                  <label htmlFor="seller_field">Nombre Vendedor</label>
-                  <input
-                    type="text"
-                    id="seller_field"
-                    className="form-control"
-                    value={seller}
-                    onChange={(e) => setSeller(e.target.value)}
-                  />
-                </div>
-
+               
                 <div className="form-group">
                   <label>Images</label>
 
@@ -232,10 +213,10 @@ const UpdateProduct = () => {
                       className="custom-file-input"
                       id="customFile"
                       onChange={onChange}
-                      multiple
+                                            
                     />
                     <label className="custom-file-label" htmlFor="customFile">
-                      Choose Images
+                      Elegir Imagen
                     </label>
                   </div>
 
@@ -247,7 +228,7 @@ const UpdateProduct = () => {
                         alt={img.url}
                         className="mt-3 mr-2"
                         width="55"
-                        height="52"
+                        height="55"
                       />
                     ))}
 
@@ -258,7 +239,7 @@ const UpdateProduct = () => {
                       alt="Images Preview"
                       className="mt-3 mr-2"
                       width="55"
-                      height="52"
+                      height="55"
                     />
                   ))}
                 </div>
