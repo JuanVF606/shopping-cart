@@ -1,7 +1,7 @@
 import React, { Fragment} from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { numberFormat } from "../product/Format";
+
 
 import SideBar from "./SideBar";
 

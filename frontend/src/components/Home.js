@@ -73,7 +73,7 @@ const Home = () => {
         <Loader />
       ) : (
         <Fragment>
-          <MetaData title={"Buy Best product online"} />
+          <MetaData title={"Sushí Store"} />
 
           <h1 id="products_heading">Ultimos Productos</h1>
 

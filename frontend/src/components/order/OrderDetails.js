@@ -29,7 +29,7 @@ const OrderDetails = () => {
 
     const shippingDetails = shippingInfo && `${shippingInfo.direccion}, ${shippingInfo.comuna}, ${shippingInfo.Provincia}, ${shippingInfo.region}`
 
-      const isPaid = paymentInfo && paymentInfo.status === "Pagado" ? true : false;
+    const isPaid = order.isPaid && paymentInfo.status === 'succeeded' ? true : false
 
     return (
         <Fragment>
@@ -38,78 +38,53 @@ const OrderDetails = () => {
             {loading ? <Loader /> : (
                 <Fragment>
                     <div className="row d-flex justify-content-between">
-                        <div className="col-12 col-lg-7 order-details">
-                  <h2 className="my-5">Orden # {order._id}</h2>
+                        <div className="col-12 col-lg-8 mt-5 order-details">
 
-                  <h4 className="mb-4">Informacion de envio:</h4>
-                  <p>
-                    <b>Nombre:</b> {user && user.nombre_completo}
-                  </p>
-                  <p>
-                    <b>Numero De Telefono:</b>{" "}
-                    {shippingInfo && shippingInfo.numero_telefono}
-                  </p>
-                  <p className="mb-4">
-                    <b>Direccion:</b>
-                    {shippingDetails}
-                  </p>
-                  <p>
-                    <b>Precio Total:</b> ${totalPrice}
-                  </p>
+                            <h1 className="my-5"><i class="fa fa-list-alt" aria-hidden="true"> Order # {order._id}</i></h1>
 
-                  <hr />
+                            <h4 className="mb-4">Shipping Info</h4>
+                            <p><b>Nombre Completo:</b> {user && user.nombre_completo}</p>
+                            <p><b>numero Telefono:</b> {shippingInfo && shippingInfo.numero_telefono}</p>
+                            <p className="mb-4"><b>Address:</b>{shippingDetails}</p>
+                            <p><b>Cantidad:</b> ${totalPrice}</p>
 
-                  <h4 className="my-4">Estado de Pago</h4>
-                  <p className={isPaid ? "greenColor" : "redColor"}>
-                    <b>{isPaid ? "PAGADO" : "NO PAGADO"}</b>
-                  </p>
+                            <hr />
 
-                  <h4 className="my-4">Estado de Orden:</h4>
-                  <p
-                    className={
-                      order.orderStatus &&
-                      String(order.orderStatus).includes("Entregado")
-                        ? "greenColor"
-                        : "redColor"
-                    }
-                  >
-                    <b>{orderStatus}</b>
-                  </p>
+                            <h4 className="my-4">Payment</h4>
+                            <p className={isPaid ? "greenColor" : "redColor"}><b>{isPaid ? "PAID" : "NOT PAID"}</b></p>
 
-                  <h4 className="my-4">Detalle de la Orden:</h4>
 
-                  <hr />
-                  <div className="cart-item my-1">
-                    {orderItems &&
-                      orderItems.map((item) => (
-                        <div key={item.product} className="row my-5">
-                          <div className="col-4 col-lg-2">
-                            <img
-                              src={item.image}
-                              alt={item.name}
-                              height="45"
-                              width="65"
-                            />
-                          </div>
+                            <h4 className="my-4">Order Status:</h4>
+                            <p className={order.orderStatus && String(order.orderStatus).includes('Entregado') ? "greenColor" : "redColor"} ><b>{orderStatus}</b></p>
 
-                          <div className="col-5 col-lg-5">
-                            <Link to={`/products/${item.product}`}>
-                              {item.name}
-                            </Link>
-                          </div>
 
-                          <div className="col-4 col-lg-2 mt-4 mt-lg-0">
-                            <p>{numberFormat(item.price)}</p>
-                          </div>
+                            <h4 className="my-4">Order Items:</h4>
 
-                          <div className="col-4 col-lg-3 mt-4 mt-lg-0">
-                            <p>Cantidad : {item.quantity}</p>
-                          </div>
+                            <hr />
+                            <div className="cart-item my-1">
+                                {orderItems && orderItems.map(item => (
+                                    <div key={item.product} className="row my-5">
+                                        <div className="col-4 col-lg-2">
+                                            <img src={item.image} alt={item.name} height="45" width="65" />
+                                        </div>
+
+                                        <div className="col-5 col-lg-5">
+                                            <Link to={`/products/${item.product}`}>{item.name}</Link>
+                                        </div>
+
+
+                                        <div className="col-4 col-lg-2 mt-4 mt-lg-0">
+                                            <p>{numberFormat(item.price)}</p>
+                                        </div>
+
+                                        <div className="col-4 col-lg-3 mt-4 mt-lg-0">
+                                            <p>Cantidad: {item.quantity} </p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                            <hr />
                         </div>
-                      ))}
-                  </div>
-                  <hr />
-                </div>
                     </div>
                 </Fragment>
             )}
