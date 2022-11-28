@@ -55,7 +55,7 @@ const ConfirmOrder = () => {
                             <div className="cart-item my-1" key={item.product}>
                                 <div className="row">
                                     <div className="col-4 col-lg-2">
-                                        <img src={item.image} alt="Laptop" height="45" width="65" />
+                                        <img src={item.image} alt="" height="95" width="115" />
                                     </div>
 
                                     <div className="col-5 col-lg-6">
@@ -65,7 +65,7 @@ const ConfirmOrder = () => {
 
                                     <div className="col-4 col-lg-4 mt-4 mt-lg-0">
 
-                                        <p>{item.quantity} x ${item.price} = <b> {numberFormat((item.quantity * item.price))}</b></p>
+                                        <p>{item.quantity} x {numberFormat(item.price)} = <b> {numberFormat((item.quantity * item.price))}</b></p>
                                     </div>
 
                                 </div>
@@ -91,7 +91,7 @@ const ConfirmOrder = () => {
                         <p>Total: <span className="order-summary-values">{numberFormat(totalPrice)}</span></p>
 
                         <hr />
-                        <button id="checkout_btn" className="btn btn-primary btn-block" onClick={processToPayment}>Proceed to Payment</button>
+                        <button id="checkout_btn" className="btn btn-primary btn-block" onClick={processToPayment}>Proceder al Pago</button>
                     </div>
                 </div>
 

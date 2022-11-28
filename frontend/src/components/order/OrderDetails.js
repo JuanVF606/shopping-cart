@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { numberFormat } from '../product/Format'
 
 import MetaData from '../layout/MetaData'
 import Loader from '../layout/Loader'
@@ -26,7 +27,7 @@ const OrderDetails = () => {
         }
     }, [dispatch, alert, error, params.id])
 
-    const shippingDetails = shippingInfo && `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.postalCode}, ${shippingInfo.country}`
+    const shippingDetails = shippingInfo && `${shippingInfo.direccion}, ${shippingInfo.comuna}, ${shippingInfo.Provincia}, ${shippingInfo.region}`
 
     const isPaid = paymentInfo && paymentInfo.status === 'succeeded' ? true : false
 
@@ -42,10 +43,10 @@ const OrderDetails = () => {
                             <h1 className="my-5">Order # {order._id}</h1>
 
                             <h4 className="mb-4">Shipping Info</h4>
-                            <p><b>Name:</b> {user && user.name}</p>
-                            <p><b>Phone:</b> {shippingInfo && shippingInfo.phoneNo}</p>
+                            <p><b>Nombre Completo:</b> {user && user.nombre_completo}</p>
+                            <p><b>numero Telefono:</b> {shippingInfo && shippingInfo.numero_telefono}</p>
                             <p className="mb-4"><b>Address:</b>{shippingDetails}</p>
-                            <p><b>Amount:</b> ${totalPrice}</p>
+                            <p><b>Cantidad:</b> ${totalPrice}</p>
 
                             <hr />
 
@@ -73,11 +74,11 @@ const OrderDetails = () => {
 
 
                                         <div className="col-4 col-lg-2 mt-4 mt-lg-0">
-                                            <p>${item.price}</p>
+                                            <p>{numberFormat(item.price)}</p>
                                         </div>
 
                                         <div className="col-4 col-lg-3 mt-4 mt-lg-0">
-                                            <p>{item.quantity} Piece(s)</p>
+                                            <p>Cantidad: {item.quantity} </p>
                                         </div>
                                     </div>
                                 ))}

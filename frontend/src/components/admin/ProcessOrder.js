@@ -13,6 +13,7 @@ import {
   clearErrors,
 } from "../../actions/orderActions";
 import { UPDATE_ORDER_RESET } from "../../constants/orderConstants";
+import { numberFormat } from "../product/Format";
 
 const ProcessOrder = () => {
     const [status, setStatus] = useState('');
@@ -103,7 +104,7 @@ const ProcessOrder = () => {
 
 
                                                 <div className="col-4 col-lg-2 mt-4 mt-lg-0">
-                                                    <p>${item.price}</p>
+                                                    <p>{numberFormat(item.price)}</p>
                                                 </div>
 
                                                 <div className="col-4 col-lg-3 mt-4 mt-lg-0">

@@ -5,6 +5,7 @@ import MetaData from "../layout/MetaData";
 import { useDispatch, useSelector } from "react-redux";
 import { addItemToCart, removeItemFromCart } from "../../actions/cartActions";
 import { useNavigate } from "react-router-dom";
+import { numberFormat } from "../product/Format";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -68,7 +69,7 @@ const Cart = () => {
                       </div>
 
                       <div className="col-4 col-lg-2 mt-4 mt-lg-0">
-                        <p id="card_item_price">${item.price}</p>
+                        <p id="card_item_price">{numberFormat(item.price)}</p>
                       </div>
 
                       <div className="col-4 col-lg-3 mt-4 mt-lg-0">
@@ -136,9 +137,9 @@ const Cart = () => {
                   Est. total:{" "}
                   <span className="order-summary-values">
                     $
-                    {cartItems
-                      .reduce(
-                        (acc, item) => acc + item.quantity * item.price,
+                      {cartItems
+                        .reduce(
+                          (acc, item) => acc + item.quantity * item.price,
                         0
                       )
                       .toFixed(2)}
