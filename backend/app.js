@@ -23,7 +23,10 @@ app.use("/api/v1/", auth);
 app.use("/api/v1/", products);
 app.use("/api/v1/", order);
 
-
+if (process.env.NODE_ENV !== 'PRODUCTION') {
+  
+require('dotenv').dotenv.config({ path: "backend/config/config.env" });
+}
 
 // Middleware to handle error
 app.use(errorMiddleware);
