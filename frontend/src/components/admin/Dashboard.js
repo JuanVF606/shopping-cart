@@ -1,9 +1,14 @@
-import React, { Fragment } from "react";
+import React, { Fragment} from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { numberFormat } from "../product/Format";
 
 import SideBar from "./SideBar";
 
+
 const Dashboard = () => {
+  const { products } = useSelector(state => state.products)
+  const {totalAmount} = useSelector(state => state.allOrders)
   return (
     <Fragment>
       <div className="row">
@@ -18,7 +23,7 @@ const Dashboard = () => {
                 <div className="card-body">
                   <div className="text-center card-font-size">
                     Total Amount
-                    <br /> <b>$4567</b>
+                    <br /> <b>{totalAmount && totalAmount.fixed(2)}</b>
                   </div>
                 </div>
               </div>
@@ -31,7 +36,7 @@ const Dashboard = () => {
                 <div className="card-body">
                   <div className="text-center card-font-size">
                     Products
-                    <br /> <b>56</b>
+                    <br /> <b>{ products && products.length}</b>
                   </div>
                 </div>
                 <Link
@@ -90,8 +95,8 @@ const Dashboard = () => {
               <div className="card text-white bg-warning o-hidden h-100">
                 <div className="card-body">
                   <div className="text-center card-font-size">
-                    No Disponible
-                    <br /> <b>4</b>
+                    Out of Stock
+                    <br /> <b>{}</b>
                   </div>
                 </div>
               </div>

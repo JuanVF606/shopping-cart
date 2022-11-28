@@ -16,7 +16,6 @@ const NewProduct = () => {
     const [description, setDescription] = useState('');
     const [category, setCategory] = useState('');
     const [stock, setStock] = useState(0);
-    const [seller, setSeller] = useState('');
     const [images, setImages] = useState([]);
     const [imagesPreview, setImagesPreview] = useState([])
 
@@ -24,7 +23,7 @@ const NewProduct = () => {
     const alert = useAlert();
     const dispatch = useDispatch();
 
-    const { loading, error, success } = useSelector(state => state.newProduct);
+    const {error, success } = useSelector(state => state.newProduct);
 
     useEffect(() => {
 
@@ -93,7 +92,7 @@ const NewProduct = () => {
                     <Fragment>
                         <div className="wrapper my-5">
                             <form className="shadow-lg" onSubmit={submitHandler} encType='multipart/form-data'>
-                                <h1 className="mb-4">Nuevo Producto</h1>
+                                <h1 className="mb-4"><i class="fa fa-database" aria-hidden="true"></i> Nuevo Producto</h1>
                                 
                                 <hr />
                                 <strong>Se recomienda subir imagenes hasta 100MB</strong>

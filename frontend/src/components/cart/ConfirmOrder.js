@@ -47,7 +47,7 @@ const ConfirmOrder = () => {
                     <p className="mb-4"><b>Direccion:</b> {`${shippingInfo.direccion}, ${shippingInfo.comuna}, ${shippingInfo.provincia}, Region ${shippingInfo.region}`}</p>
 
                     <hr />
-                    <h4 className="mt-4">Your Cart Items:</h4>
+                    <h4 className="mt-4"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Tu carrito:</h4>
 
                     {cartItems.map(item => (
                         <Fragment>
@@ -82,9 +82,9 @@ const ConfirmOrder = () => {
                     <div id="order_summary">
                         <h4>Order Summary</h4>
                         <hr />
-                        <p>Subtotal:  <span className="order-summary-values">${itemsPrice}</span></p>
-                        <p>Costo De envio: <span className="order-summary-values">${shippingPrice}</span></p>
-                        <p>IVA:  <span className="order-summary-values">${taxPrice}</span></p>
+                        <p>Subtotal:  <span className="order-summary-values">{numberFormat(itemsPrice)}</span></p>
+                        <p>Costo De envio: <span className="order-summary-values">{numberFormat(shippingPrice)}</span></p>
+                        <p>IVA 19%:  <span className="order-summary-values">{numberFormat(taxPrice)}</span></p>
 
                         <hr />
 

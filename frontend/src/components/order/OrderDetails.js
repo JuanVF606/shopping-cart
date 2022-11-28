@@ -29,7 +29,7 @@ const OrderDetails = () => {
 
     const shippingDetails = shippingInfo && `${shippingInfo.direccion}, ${shippingInfo.comuna}, ${shippingInfo.Provincia}, ${shippingInfo.region}`
 
-    const isPaid = paymentInfo && paymentInfo.status === 'succeeded' ? true : false
+    const isPaid = order.isPaid && paymentInfo.status === 'succeeded' ? true : false
 
     return (
         <Fragment>
@@ -40,7 +40,7 @@ const OrderDetails = () => {
                     <div className="row d-flex justify-content-between">
                         <div className="col-12 col-lg-8 mt-5 order-details">
 
-                            <h1 className="my-5">Order # {order._id}</h1>
+                            <h1 className="my-5"><i class="fa fa-list-alt" aria-hidden="true"> Order # {order._id}</i></h1>
 
                             <h4 className="mb-4">Shipping Info</h4>
                             <p><b>Nombre Completo:</b> {user && user.nombre_completo}</p>
@@ -55,7 +55,7 @@ const OrderDetails = () => {
 
 
                             <h4 className="my-4">Order Status:</h4>
-                            <p className={order.orderStatus && String(order.orderStatus).includes('Delivered') ? "greenColor" : "redColor"} ><b>{orderStatus}</b></p>
+                            <p className={order.orderStatus && String(order.orderStatus).includes('Entregado') ? "greenColor" : "redColor"} ><b>{orderStatus}</b></p>
 
 
                             <h4 className="my-4">Order Items:</h4>

@@ -83,8 +83,8 @@ exports.allOrders = catchAsyncErrors(async (req, res, next) => {
 exports.updateOrder = catchAsyncErrors(async (req, res, next) => {
     const order = await Order.findById(req.params.id)
 
-    if (order.orderStatus === 'Delivered') {
-        return next(new ErrorHandler('You have already delivered this order', 400))
+    if (order.orderStatus === 'Entregado') {
+        return next(new ErrorHandler('Producto ya Entregado', 400))
     }
 
     order.orderItems.forEach(async item => {

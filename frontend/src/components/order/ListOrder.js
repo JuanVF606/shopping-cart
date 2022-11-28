@@ -4,7 +4,7 @@ import { MDBDataTable } from 'mdbreact'
 
 import MetaData from '../layout/MetaData'
 import Loader from '../layout/Loader'
-
+import { numberFormat } from '../product/Format'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { myOrders, clearErrors } from '../../actions/orderActions'
@@ -61,8 +61,8 @@ const ListOrders = () => {
             data.rows.push({
                 id: order._id,
                 numOfItems: order.orderItems.length,
-                amount: `$${order.totalPrice}`,
-                status: order.orderStatus && String(order.orderStatus).includes('Delivered')
+                amount: `${numberFormat(order.totalPrice)}`,
+                status: order.orderStatus && String(order.orderStatus).includes('Entregado')
                     ? <p style={{ color: 'green' }}>{order.orderStatus}</p>
                     : <p style={{ color: 'red' }}>{order.orderStatus}</p>,
                 actions:
@@ -80,7 +80,7 @@ const ListOrders = () => {
 
             <MetaData title={'My Orders'} />
 
-            <h1 className="my-5">My Orders</h1>
+            <h1 className="my-5"><i class="fa fa-list" aria-hidden="true"></i> Mis ordenes</h1>
 
             {loading ? <Loader /> : (
                 <MDBDataTable

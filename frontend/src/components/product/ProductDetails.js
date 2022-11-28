@@ -136,7 +136,7 @@ const ProductDetails = () => {
                       id="stock_status"
                       className={product.stock > 0 ? "greenColor" : "redColor"}
                     >
-                      {product.stock > 0 ? "Disponible" : "No Disponible"}
+                      {product.stock > 0 ? "Disponible" : "No disponible"}
                     </span>
                   </p>
 

@@ -113,7 +113,7 @@ const Shipping = () => {
               type="submit"
               className="btn btn-block py-3"
             >
-              CONTINUE
+              Continuar
             </button>
           </form>
         </div>

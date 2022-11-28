@@ -38,8 +38,8 @@ const Cart = () => {
           <h2 className="mt-5">Carrito Vacio, Por favor añada productos</h2>
           <button
           id="checkout_btn"
-                  className="btn-elegant rounded-circle alert-link">
-            <Link to="/"><i class="fa fa-chevron-left" aria-hidden="true"></i>Regresar</Link>
+                  className=" btn-block rounded alert-link">
+            <Link to="/"><i class="fa fa-cart-plus" aria-hidden="true"></i>Regresar</Link>
           </button>
         </Fragment>
       ) : (
