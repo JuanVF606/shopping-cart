@@ -15,7 +15,7 @@ const OrderSuccess = () => {
 
                 <h2>Tu Orden a sido registrada correctamente.</h2>
 
-                <Link to="/order">Ve tus ordenes</Link>
+                <Link to="/orders/me">Ve tus ordenes</Link>
             </div>
 
         </div>
